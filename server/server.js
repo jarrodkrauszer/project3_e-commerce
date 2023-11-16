@@ -1,36 +1,63 @@
-const express = require('express');
-const cookieParser = require('cookie-parser');
+const express = require("express");
+const cookieParser = require("cookie-parser");
 
-const path = require('path');
-require('dotenv').config();
+const { ApolloServer } = require("@apollo/server");
+const { expressMiddleware } = require("@apollo/server/express4");
 
 const app = express();
 const PORT = process.env.PORT || 3333;
-const is_prod = process.env.NODE.ENV === 'production'
-const db = require('./config/connection');
+const is_prod = process.env.NODE_ENV === "production";
+const path = require("path");
 
-const routes = require('./routes');
+require("dotenv").config();
 
-if (is_prod) {
-  app.use(express.static(path.join(__dirname, '../client/dist')));
-}
+const db = require("./config/connection");
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+const { typeDefs, resolvers } = require("./schema");
+const { authenticate } = require("./auth");
 
-app.use(routes);
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+});
 
-if (process.env.NODE_ENV === 'production') {
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+async function startServer() {
+  await server.start();
+
+  // Open channel for JSON to be sent from client
+  app.use(express.json());
+
+  // Share dist folder files when in production only
+  if (is_prod) {
+    app.use(express.static(path.join(__dirname, "../client/dist")));
+  }
+
+  // Open cookie middleware channel so we can view cookies on the request object
+  app.use(cookieParser());
+
+  app.use(
+    "/graphql",
+    expressMiddleware(server, {
+      context: authenticate,
+    })
+  );
+
+  // Trigger React router to handle all routing outside of our auth routes
+  if (is_prod) {
+    app.get("*", (req, res) => {
+      res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+    });
+  }
+
+  // Validate that the mongoose connection is complete
+  db.once("open", () => {
+    console.log("DB connection established");
+
+    app.listen(PORT, () => {
+      console.log("Server listening on port", PORT);
+      console.log("GraphQL running at /graphql");
+    });
   });
 }
 
-db.once('open', () => {
-  console.log('DB Connection Established!');
-
-  app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
-});
-
-
+startServer();
