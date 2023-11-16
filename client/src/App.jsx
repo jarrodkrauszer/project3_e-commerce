@@ -1,35 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useQuery, gql } from "@apollo/client";
+
+import Container from "react-bootstrap/Container";
+
+import Header from "./components/Header";
+
+import Landing from "./pages/Landing";
+import Auth from "./pages/Auth";
+import NotFound from "./pages/NotFound";
+
+import { useStore } from "./store";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { setState } = useStore();
 
-  return (
+  const { loading, error, data: userData } = useQuery(AUTHENTICATE);
+
+  useEffect(() => {
+    if (userData) {
+      setState((oldState) => ({
+        ...oldState,
+        user: userData.authenticate,
+      }));
+    }
+  }, [userData]);
+
+  return loading ? (
+    <h3 className="d-flex justify-content-center align-items-center vh-100">
+      Loading...
+    </h3>
+  ) : (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Header />
+
+      <Container>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/register" element={<Auth isLogin={false} />} />
+          <Route path="/login" element={<Auth isLogin={true} />} />
+
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Container>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
