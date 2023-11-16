@@ -1,6 +1,8 @@
 const { User, Product, Category, Order } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
-const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
+
+const { createToken } = require('./helpers');
+
 
 const resolvers = {
   Query: {
@@ -51,46 +53,69 @@ const resolvers = {
 
       throw AuthenticationError;
     },
-    checkout: async (parent, args, context) => {
-      const url = new URL(context.headers.referer).origin;
-      // We map through the list of products sent by the client to extract the _id of each item and create a new Order.
-      await Order.create({ products: args.products.map(({ _id }) => _id) });
-      const line_items = [];
+    // checkout: async (parent, args, context) => {
+    //   const url = new URL(context.headers.referer).origin;
+    //   // We map through the list of products sent by the client to extract the _id of each item and create a new Order.
+    //   await Order.create({ products: args.products.map(({ _id }) => _id) });
+    //   const line_items = [];
 
-      for (const product of args.products) {
-        line_items.push({
-          price_data: {
-            currency: "usd",
-            product_data: {
-              name: product.name,
-              description: product.description,
-              images: [`${url}/images/${product.image}`],
-            },
-            unit_amount: product.price * 100,
-          },
-          quantity: product.purchaseQuantity,
-        });
-      }
+    //   for (const product of args.products) {
+    //     line_items.push({
+    //       price_data: {
+    //         currency: "usd",
+    //         product_data: {
+    //           name: product.name,
+    //           description: product.description,
+    //           images: [`${url}/images/${product.image}`],
+    //         },
+    //         unit_amount: product.price * 100,
+    //       },
+    //       quantity: product.purchaseQuantity,
+    //     });
+    //   }
 
-      const session = await stripe.checkout.sessions.create({
-        payment_method_types: ["card"],
-        line_items,
-        mode: "payment",
-        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${url}/`,
-      });
+    //   const session = await stripe.checkout.sessions.create({
+    //     payment_method_types: ["card"],
+    //     line_items,
+    //     mode: "payment",
+    //     success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+    //     cancel_url: `${url}/`,
+    //   });
 
-      return { session: session.id };
-    },
+    //   return { session: session.id };
+    // },
   },
   Mutation: {
-    addUser: async (parent, args) => {
-      const user = await User.create(args);
-      const token = signToken(user);
+    async register(_, args, context) {
+      try {
+        console.log(args)
+        const user = await User.create(args);
 
-      return { token, user };
+        const token = await createToken(user._id);
+
+        // Authenticate/Log In User
+        context.res.cookie('token', token, {
+          maxAge: 60 * 60 * 1000,     // 1 hour
+          httpOnly: true,
+          secure: process.env.PORT ? true : false
+        });
+
+        return user;
+
+      } catch (err) {
+        let message;
+
+        if (err.code === 11000) {
+          message = 'That email address is already in use.'
+        } else {
+          message = err.message;
+        }
+
+        throw new Error(message);
+
+      }
     },
-    addOrder: async (parent, { products }, context) => {
+    createOrder: async (parent, { products }, context) => {
       if (context.user) {
         const order = new Order({ products });
 

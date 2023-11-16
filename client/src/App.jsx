@@ -5,20 +5,22 @@ import { useQuery, gql } from "@apollo/client";
 import Header from "./components/Header";
 import Carousel from "./components/Carousel";
 
+import Auth from "./pages/Auth";
+
 // import { useStore } from './store'
 
-const AUTHENTICATE = gql`
-  query {
-    authenticate {
-      _id
-      email
-      hobbies {
-        _id
-        name
-      }
-    }
-  }
-`;
+// const AUTHENTICATE = gql`
+//   query {
+//     authenticate {
+//       _id
+//       email
+//       hobbies {
+//         _id
+//         name
+//       }
+//     }
+//   }
+// `;
 
 function App() {
   // const { setState } = useStore()
@@ -43,17 +45,17 @@ function App() {
   ) : (
     <>
       <Header />
-      <Carousel />
+      {/* <Carousel /> */}
 
-      {/* <Container>
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/register" element={<Auth isLogin={false} />} />
-          <Route path="/login" element={<Auth isLogin={true} />} />
 
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Container> */}
+      <Routes>
+        {/* <Route path="/" element={<Landing />} /> */}
+        <Route path="/register" element={<Auth isLogin={false} />} />
+        <Route path="/login" element={<Auth isLogin={true} />} />
+
+        {/* <Route path="*" element={<NotFound />} /> */}
+      </Routes>
+
     </>
   );
 }
