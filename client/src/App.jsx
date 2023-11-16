@@ -9,23 +9,19 @@ import Auth from "./pages/Auth";
 
 // import { useStore } from './store'
 
-// const AUTHENTICATE = gql`
-//   query {
-//     authenticate {
-//       _id
-//       email
-//       hobbies {
-//         _id
-//         name
-//       }
-//     }
-//   }
-// `;
+const AUTHENTICATE = gql`
+  query {
+    authenticate {
+      _id
+      email
+    }
+  }
+`;
 
 function App() {
   // const { setState } = useStore()
 
-  // const { loading, error, data: userData } = useQuery(AUTHENTICATE)
+  const { loading, error, data: userData } = useQuery(AUTHENTICATE)
 
   // useEffect(() => {
   //   if (userData) {
@@ -36,7 +32,7 @@ function App() {
   //   }
   // }, [userData])
 
-  const loading = false;
+  // const loading = false;
 
   return loading ? (
     <h3 className="d-flex justify-content-center align-items-center vh-100">

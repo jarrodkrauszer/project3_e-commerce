@@ -57,8 +57,6 @@ function Auth({ isLogin }) {
       // const userData = await registerUser()
       const { data: userData } = await authenticateUser()
 
-      console.log('userData: ', userData)
-
       setFormData({ ...initialFormData })
 
       setState(oldState => ({
