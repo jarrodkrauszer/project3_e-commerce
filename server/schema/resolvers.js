@@ -3,9 +3,12 @@ const { signToken, AuthenticationError } = require("../utils/auth");
 
 const { createToken } = require('./helpers');
 
-
 const resolvers = {
   Query: {
+    authenticate(_, __, context) {
+
+      return context.user;
+    },
     categories: async () => {
       return await Category.find();
     },
@@ -24,10 +27,10 @@ const resolvers = {
 
       return await Product.find(params).populate("category");
     },
-    product: async (parent, { _id }) => {
+    product: async (_, { _id }) => {
       return await Product.findById(_id).populate("category");
     },
-    user: async (parent, args, context) => {
+    user: async (_, __, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
           path: "orders.products",
@@ -41,7 +44,7 @@ const resolvers = {
 
       throw AuthenticationError;
     },
-    order: async (parent, { _id }, context) => {
+    order: async (_, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
           path: "orders.products",
@@ -53,42 +56,12 @@ const resolvers = {
 
       throw AuthenticationError;
     },
-    // checkout: async (parent, args, context) => {
-    //   const url = new URL(context.headers.referer).origin;
-    //   // We map through the list of products sent by the client to extract the _id of each item and create a new Order.
-    //   await Order.create({ products: args.products.map(({ _id }) => _id) });
-    //   const line_items = [];
 
-    //   for (const product of args.products) {
-    //     line_items.push({
-    //       price_data: {
-    //         currency: "usd",
-    //         product_data: {
-    //           name: product.name,
-    //           description: product.description,
-    //           images: [`${url}/images/${product.image}`],
-    //         },
-    //         unit_amount: product.price * 100,
-    //       },
-    //       quantity: product.purchaseQuantity,
-    //     });
-    //   }
-
-    //   const session = await stripe.checkout.sessions.create({
-    //     payment_method_types: ["card"],
-    //     line_items,
-    //     mode: "payment",
-    //     success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-    //     cancel_url: `${url}/`,
-    //   });
-
-    //   return { session: session.id };
-    // },
   },
   Mutation: {
     async register(_, args, context) {
       try {
-        console.log(args)
+
         const user = await User.create(args);
 
         const token = await createToken(user._id);
@@ -115,7 +88,7 @@ const resolvers = {
 
       }
     },
-    createOrder: async (parent, { products }, context) => {
+    createOrder: async (_, { products }, context) => {
       if (context.user) {
         const order = new Order({ products });
 
@@ -128,7 +101,7 @@ const resolvers = {
 
       throw AuthenticationError;
     },
-    updateUser: async (parent, args, context) => {
+    updateUser: async (_, args, context) => {
       if (context.user) {
         return await User.findByIdAndUpdate(context.user._id, args, {
           new: true,
@@ -146,7 +119,7 @@ const resolvers = {
         { new: true }
       );
     },
-    login: async (parent, { email, password }) => {
+    login: async (_, { email, password }) => {
       const user = await User.findOne({ email });
 
       if (!user) {
@@ -167,3 +140,4 @@ const resolvers = {
 };
 
 module.exports = resolvers;
+

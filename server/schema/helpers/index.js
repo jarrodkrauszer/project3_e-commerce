@@ -3,7 +3,7 @@ const User = require('../../models/User');
 
 async function createToken(user_id) {
   try {
-    console.log('Secret ', process.env.JWT_SECRET)
+
     const token = await sign({ user_id }, process.env.JWT_SECRET);
 
     return token;
