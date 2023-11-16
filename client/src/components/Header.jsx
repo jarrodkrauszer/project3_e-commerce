@@ -1,5 +1,4 @@
 import "../styles/header.scss";
-import Githublogo from "../assets/25231.png";
 import React from "react";
 
 function Header(propsObj) {
