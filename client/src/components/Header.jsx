@@ -14,4 +14,4 @@ function Header(propsObj) {
   );
 }
 
-export default MainHeader;
+export default Header;

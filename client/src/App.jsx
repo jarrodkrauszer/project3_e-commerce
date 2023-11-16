@@ -2,11 +2,10 @@ import { Routes, Route } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useQuery, gql } from '@apollo/client'
 
-import Container from 'react-bootstrap/Container'
 
 import Header from './components/Header'
 import Carousel from './components/Carousel'
-import Footer from './components/Footer'
+
 
 // import Landing from './pages/Landing'
 // import Auth from './pages/Auth'
@@ -28,18 +27,18 @@ const AUTHENTICATE = gql`
 `
 
 function App() {
-  const { setState } = useStore()
+  // const { setState } = useStore()
   const loading = false;
   // const { loading, error, data: userData } = useQuery(AUTHENTICATE)
 
-  useEffect(() => {
-    if (userData) {
-      setState(oldState => ({
-        ...oldState,
-        user: userData.authenticate
-      }))
-    }
-  }, [userData])
+  // useEffect(() => {
+  //   if (userData) {
+  //     setState(oldState => ({
+  //       ...oldState,
+  //       user: userData.authenticate
+  //     }))
+  //   }
+  // }, [userData])
 
   return (loading ? (
     <h3 className='d-flex justify-content-center align-items-center vh-100'>Loading...</h3>
@@ -58,7 +57,7 @@ function App() {
         </Routes>
       </Container> */}
 
-      <Footer />
+
     </>
   )
 
