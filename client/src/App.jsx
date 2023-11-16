@@ -1,13 +1,9 @@
-import { Routes, Route } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-import { useQuery, gql } from '@apollo/client'
+import { Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useQuery, gql } from "@apollo/client";
 
-
-
-import Header from './components/Header'
-import Carousel from './components/Carousel'
-
-
+import Header from "./components/Header";
+import Carousel from "./components/Carousel";
 
 // import { useStore } from './store'
 
@@ -22,7 +18,7 @@ const AUTHENTICATE = gql`
       }
     }
   }
-`
+`;
 
 function App() {
   // const { setState } = useStore()
@@ -40,8 +36,10 @@ function App() {
 
   const loading = false;
 
-  return (loading ? (
-    <h3 className='d-flex justify-content-center align-items-center vh-100'>Loading...</h3>
+  return loading ? (
+    <h3 className="d-flex justify-content-center align-items-center vh-100">
+      Loading...
+    </h3>
   ) : (
     <>
       <Header />
@@ -57,9 +55,7 @@ function App() {
         </Routes>
       </Container> */}
     </>
-  )
-
-  )
+  );
 }
 
-export default App
+export default App;
