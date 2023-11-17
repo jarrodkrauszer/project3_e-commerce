@@ -1,19 +1,19 @@
-import { useMutation, gql } from '@apollo/client'
+import { useMutation, gql } from "@apollo/client";
 
 import "../styles/header.scss";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from "react-router-dom";
 
-import { useStore } from '../store'
+import { useStore } from "../store";
 
 const navigation = [
   { name: "Men's", href: "/category/mens", current: true },
   { name: "Women's", href: "/category/womens", current: false },
   { name: "Jackets", href: "/category/jackets", current: false },
   { name: "Shirts", href: "/category/shirts", current: false },
-  { name: "Sneakers", href: "/category/sneakers", current: false }
+  { name: "Sneakers", href: "/category/sneakers", current: false },
 ];
 
 function classNames(...classes) {
@@ -24,27 +24,27 @@ const LOGOUT_USER = gql`
   mutation {
     logout
   }
-`
+`;
 
 function Header() {
   const { user, setState } = useStore();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const [logoutUser] = useMutation(LOGOUT_USER)
+  const [logoutUser] = useMutation(LOGOUT_USER);
 
   const logout = async (e) => {
     e.preventDefault();
 
-    await logoutUser()
+    await logoutUser();
 
-    setState(oldState => ({
+    setState((oldState) => ({
       ...oldState,
-      user: null
-    }))
+      user: null,
+    }));
 
     // navigate('/')
-  }
+  };
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -100,7 +100,7 @@ function Header() {
                   Sign In
                 </NavLink>
                 <NavLink
-                  to='/register'
+                  to="/register"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                 >
                   Register
