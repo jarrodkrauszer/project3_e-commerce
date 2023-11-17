@@ -14,6 +14,7 @@
 }
 
 #root {
+  margin-top: 0px;
   flex: 1;
 }
 
