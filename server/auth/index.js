@@ -1,8 +1,9 @@
 const { sign, verify } = require('jsonwebtoken');
-const User = require('../../models/User');
+const User = require('../models/User');
 
 async function createToken(user_id) {
   try {
+
     const token = await sign({ user_id }, process.env.JWT_SECRET);
 
     return token;
@@ -12,7 +13,7 @@ async function createToken(user_id) {
 
 }
 
-async function isAuthenticate(req, res, next) {
+async function authenticate(req, res, next) {
   const token = req.cookies.token;
 
   if (!token) return res.status(401).json({
@@ -37,4 +38,4 @@ async function isAuthenticate(req, res, next) {
 
 }
 
-module.exports = { createToken, isAuthenticate };
+module.exports = { createToken, authenticate };

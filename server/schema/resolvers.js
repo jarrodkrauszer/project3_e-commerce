@@ -1,12 +1,11 @@
 const { User, Product, Category, Order } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
-const { createToken } = require('./helpers');
+const { createToken } = require('../auth');
 
 const resolvers = {
   Query: {
     authenticate(_, __, context) {
-
       return context.user;
     },
     categories: async () => {
