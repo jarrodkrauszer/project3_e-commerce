@@ -38,15 +38,18 @@ function Header() {
 
   const logout = async (e) => {
     e.preventDefault();
+    try {
+      await logoutUser();
 
-    await logoutUser();
+      dispatch({
+        type: UPDATE_USER,
+        user: null,
+      });
 
-    dispatch({
-      type: UPDATE_USER,
-      user: null,
-    });
-
-    navigate("/");
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -69,7 +72,7 @@ function Header() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <a href="/landing">
+                  <a href="/">
                     <img
                       className="h-8 w-auto"
                       src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
