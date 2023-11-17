@@ -8,20 +8,10 @@ import Men from "../../assets/men.png";
 import Women from "../../assets/womens.png";
 import Sneakers from "../../assets/sneakers.png";
 
+import { QUERY_PRODUCTS, QUERY_ALL_PRODUCTS } from '../../utils/queries';
+
 import './category.scss'
 
-const QUERY_PRODUCTS = gql`
-  query Products($category: ID, $name: String) {
-    products(category: $category, name: $name) {
-      _id
-      name
-      category {
-        _id
-        name
-      }
-    }
-  }
-`;
 
 const Category = () => {
   const [category, setCategory] = useState(null);
