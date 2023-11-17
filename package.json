@@ -4,13 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev:client": "cd ./client && npm run dev",
+    "dev:server": "cd ./server && npm run start:dev",
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
+    "build": "cd ./client && NODE_ENV=development npm install --only=dev && npm run build",
+    "install:client": "cd ./client && npm i",
+    "install:server": "cd ./server && npm i",
+    "install": "npm run install:client && npm run install:server",
+    "start": "cd ./server && npm start"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "concurrently": "^8.2.2",
+    "jsonwebtoken": "^9.0.2",
     "sass": "^1.69.5"
   }
 }

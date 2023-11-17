@@ -3,13 +3,13 @@ const cookieParser = require("cookie-parser");
 
 const { ApolloServer } = require("@apollo/server");
 const { expressMiddleware } = require("@apollo/server/express4");
+const path = require("path");
+require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 3333;
 const is_prod = process.env.NODE_ENV === "production";
-const path = require("path");
 
-require("dotenv").config();
 
 const db = require("./config/connection");
 
