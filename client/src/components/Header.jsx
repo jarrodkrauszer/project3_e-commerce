@@ -12,11 +12,11 @@ import { UPDATE_USER } from "../utils/actions";
 import { QUERY_AUTHENTICATE } from "../utils/queries";
 
 const navigation = [
-  { name: "Men's", href: "/category/mens", current: true },
-  { name: "Women's", href: "/category/womens", current: false },
-  { name: "Jackets", href: "/category/jackets", current: false },
-  { name: "Shirts", href: "/category/shirts", current: false },
-  { name: "Sneakers", href: "/category/sneakers", current: false },
+  { name: "Men's", href: "/products", current: true },
+  { name: "Women's", href: "/products", current: false },
+  { name: "Jackets", href: "/products", current: false },
+  { name: "Shirts", href: "/products", current: false },
+  { name: "Sneakers", href: "/products", current: false },
 ];
 
 function classNames(...classes) {

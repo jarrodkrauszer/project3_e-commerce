@@ -8,6 +8,8 @@ import Men from "../../assets/men.png";
 import Women from "../../assets/womens.png";
 import Sneakers from "../../assets/sneakers.png";
 
+import { QUERY_PRODUCTS, QUERY_ALL_PRODUCTS } from "../../utils/queries";
+
 import "./category.scss";
 
 const QUERY_PRODUCTS = gql`
