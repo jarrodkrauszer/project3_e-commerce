@@ -16,7 +16,7 @@ export const reducer = (state, action) => {
     case UPDATE_USER:
       return {
         ...state,
-        user: [action.user]
+        user: action.user
       }
     case UPDATE_PRODUCTS:
       return {

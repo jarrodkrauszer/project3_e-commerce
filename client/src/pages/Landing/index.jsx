@@ -1,5 +1,5 @@
 import Hero from "./Hero";
-import Category from "../../components/Category";
+import Category from "../../components/Category/Category";
 import Carousel from "../../components/Carousel";
 
 function Landing() {

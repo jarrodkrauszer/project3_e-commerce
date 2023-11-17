@@ -20,5 +20,8 @@
     "concurrently": "^8.2.2",
     "jsonwebtoken": "^9.0.2",
     "sass": "^1.69.5"
+  },
+  "devDependencies": {
+    "react-responsive-carousel": "^3.2.23"
   }
 }
