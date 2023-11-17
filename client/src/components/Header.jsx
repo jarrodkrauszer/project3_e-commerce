@@ -6,7 +6,8 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink, useNavigate } from "react-router-dom";
 
-import { useStore } from "../store";
+import { useStoreContext } from "../utils/store";
+import { UPDATE_USER } from '../utils/actions';
 
 const navigation = [
   { name: "Men's", href: "/category/mens", current: true },
@@ -27,7 +28,9 @@ const LOGOUT_USER = gql`
 `;
 
 function Header() {
-  const { user, setState } = useStore();
+  const [state, dispatch] = useStoreContext();
+
+  const { user } = state
 
   const navigate = useNavigate();
 
@@ -38,12 +41,12 @@ function Header() {
 
     await logoutUser();
 
-    setState((oldState) => ({
-      ...oldState,
-      user: null,
-    }));
+    dispatch({
+      type: UPDATE_USER,
+      user: null
+    })
 
-    // navigate('/')
+    navigate('/')
   };
 
   return (
@@ -183,7 +186,8 @@ function Header() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="/logout"
+                            onClick={logout}
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"

@@ -3,7 +3,6 @@ header {
 }
 header nav {
   font: 100%;
-  padding: 2px;
   margin-left: 2px;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-size: large;
@@ -11,7 +10,6 @@ header nav {
   border-color: black;
   padding-top: 5px;
   padding-right: 20px;
-  position: fixed;
 }
 header nav a {
   margin-left: 10px;

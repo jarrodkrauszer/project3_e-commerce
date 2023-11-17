@@ -2,13 +2,15 @@ import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useQuery, gql } from "@apollo/client";
 
+import { UPDATE_USER } from './utils/actions';
+
 import Header from "./components/Header";
 import Carousel from "./components/Carousel";
 
 import Auth from "./pages/Auth";
 import Landing from "./pages/Landing";
 
-import { useStore } from "./store";
+import { useStoreContext } from "./utils/store";
 
 const AUTHENTICATE = gql`
   query {
@@ -20,16 +22,16 @@ const AUTHENTICATE = gql`
 `;
 
 function App() {
-  const { setState } = useStore();
+  const [state, dispatch] = useStoreContext();
 
   const { loading, error, data: userData } = useQuery(AUTHENTICATE);
 
   useEffect(() => {
     if (userData) {
-      setState((oldState) => ({
-        ...oldState,
+      dispatch({
+        type: UPDATE_USER,
         user: userData.authenticate,
-      }));
+      });
     }
   }, [userData]);
 

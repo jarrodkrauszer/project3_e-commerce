@@ -1,7 +1,9 @@
-import { useStore } from '../../store'
+import { useStoreContext } from '../../utils/store'
 
 function Hero() {
-  const { user } = useStore();
+  const [state, dispatch] = useStoreContext();
+
+  const { user } = state
 
   return (
     <>
