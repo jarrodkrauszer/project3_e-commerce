@@ -42,7 +42,6 @@ function App() {
   ) : (
     <>
       <Header />
-      {/* <Carousel /> */}
 
       <Routes>
         <Route path="/" element={<Landing />} />
