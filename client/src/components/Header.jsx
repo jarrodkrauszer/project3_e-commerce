@@ -9,6 +9,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useStoreContext } from "../utils/store";
 import { UPDATE_USER } from '../utils/actions';
 
+import { QUERY_AUTHENTICATE } from '../utils/queries'
+
 const navigation = [
   { name: "Men's", href: "/category/mens", current: true },
   { name: "Women's", href: "/category/womens", current: false },
@@ -30,11 +32,11 @@ const LOGOUT_USER = gql`
 function Header() {
   const [state, dispatch] = useStoreContext();
 
-  const { user } = state
-
   const navigate = useNavigate();
 
-  const [logoutUser] = useMutation(LOGOUT_USER);
+  const [logoutUser] = useMutation(LOGOUT_USER, {
+    refetchQueries: [QUERY_AUTHENTICATE]
+  });
 
   const logout = async (e) => {
     e.preventDefault();
@@ -98,14 +100,16 @@ function Header() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                {user ? (
+                {state.user ? (
                   <>
-                    <NavLink
-                      to="/logout"
+                    <p>{state.user.email}</p>
+                    <a
+                      href="/logout"
+                      onClick={logout}
                       className="hidden md:block text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                     >
                       Log Out
-                    </NavLink>
+                    </a>
                   </>
                 ) : (
                   <>
@@ -223,7 +227,7 @@ function Header() {
                 </Disclosure.Button>
               ))}
 
-              {user ? (
+              {state.user ? (
                 <>
                   <NavLink
                     to="/logout"
