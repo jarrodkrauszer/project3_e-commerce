@@ -9,6 +9,7 @@ import Carousel from "./components/Carousel";
 
 import Auth from "./pages/Auth";
 import Landing from "./pages/Landing";
+import ProductList from "./pages/ProductList";
 
 import { useStoreContext } from "./utils/store";
 
@@ -47,6 +48,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/products" element={<ProductList />} />
         <Route path="/register" element={<Auth isLogin={false} />} />
         <Route path="/login" element={<Auth isLogin={true} />} />
 
