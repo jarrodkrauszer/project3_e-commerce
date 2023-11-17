@@ -7,9 +7,9 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import { useStoreContext } from "../utils/store";
-import { UPDATE_USER } from '../utils/actions';
+import { UPDATE_USER } from "../utils/actions";
 
-import { QUERY_AUTHENTICATE } from '../utils/queries'
+import { QUERY_AUTHENTICATE } from "../utils/queries";
 
 const navigation = [
   { name: "Men's", href: "/products", current: true },
@@ -35,20 +35,23 @@ function Header() {
   const navigate = useNavigate();
 
   const [logoutUser] = useMutation(LOGOUT_USER, {
-    refetchQueries: [QUERY_AUTHENTICATE]
+    refetchQueries: [QUERY_AUTHENTICATE],
   });
 
   const logout = async (e) => {
     e.preventDefault();
+    try {
+      await logoutUser();
 
-    await logoutUser();
+      dispatch({
+        type: UPDATE_USER,
+        user: null,
+      });
 
-    dispatch({
-      type: UPDATE_USER,
-      user: null
-    })
-
-    navigate('/')
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -71,7 +74,7 @@ function Header() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <a href="/landing">
+                  <a href="/">
                     <img
                       className="h-8 w-auto"
                       src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
@@ -231,6 +234,7 @@ function Header() {
                 <>
                   <NavLink
                     to="/logout"
+                    onClick={logout}
                     className="mt-10 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-small"
                   >
                     Log Out
