@@ -4,7 +4,7 @@ import App from './App.jsx'
 import { BrowserRouter as Router } from 'react-router-dom'
 import './index.css'
 
-import { StoreProvider } from './store.jsx'
+import { StoreProvider } from '../src/utils/store.jsx'
 
 import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink } from '@apollo/client'
 import { onError } from '@apollo/client/link/error'
