@@ -1,5 +1,5 @@
 const { User, Product, Category, Order } = require("../models");
-const { signToken, AuthenticationError } = require("../utils/auth");
+const { signToken, AuthenticationError } = require("../auth");
 
 const { createToken } = require('../auth');
 
@@ -135,6 +135,12 @@ const resolvers = {
 
       return { token, user };
     },
+
+    logout(_, __, context) {
+      context.res.clearCookie('token');
+
+      return 'User logged out successfully!'
+    }
   },
 };
 

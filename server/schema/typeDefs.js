@@ -128,6 +128,7 @@ const typeDefs = gql`
     ): User!
     deleteUser(id: ID!): User!
     login(email: String!, password: String!): User
+    logout: String
     createProduct(
       name: String!
       imageUrl: String

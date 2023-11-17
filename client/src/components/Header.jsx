@@ -1,8 +1,12 @@
+import { useMutation, gql } from '@apollo/client'
+
 import "../styles/header.scss";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink, useNavigate } from 'react-router-dom'
+
+import { useStore } from '../store'
 
 const navigation = [
   { name: "Men's", href: "/category/mens", current: true },
@@ -16,7 +20,32 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+const LOGOUT_USER = gql`
+  mutation {
+    logout
+  }
+`
+
 function Header() {
+  const { user, setState } = useStore();
+
+  const navigate = useNavigate()
+
+  const [logoutUser] = useMutation(LOGOUT_USER)
+
+  const logout = async (e) => {
+    e.preventDefault();
+
+    await logoutUser()
+
+    setState(oldState => ({
+      ...oldState,
+      user: null
+    }))
+
+    // navigate('/')
+  }
+
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -70,7 +99,6 @@ function Header() {
                 >
                   Sign In
                 </NavLink>
-                <span>or</span>
                 <NavLink
                   to='/register'
                   className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
