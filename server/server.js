@@ -14,7 +14,7 @@ const is_prod = process.env.NODE_ENV === "production";
 const db = require("./config/connection");
 
 const { typeDefs, resolvers } = require("./schema");
-const { authenticate } = require("./utils/auth");
+const { authenticate } = require("./auth");
 
 const server = new ApolloServer({
   typeDefs,
