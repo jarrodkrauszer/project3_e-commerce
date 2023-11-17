@@ -125,7 +125,7 @@ const resolvers = {
         throw AuthenticationError;
       }
 
-      const correctPw = await user.isCorrectPassword(password);
+      const correctPw = await user.validatePass(password);
 
       if (!correctPw) {
         throw AuthenticationError;
