@@ -7,7 +7,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import { useStoreContext } from "../utils/store";
-import { UPDATE_USER } from '../utils/actions';
+import { UPDATE_USER } from "../utils/actions";
 
 const navigation = [
   { name: "Men's", href: "/category/mens", current: true },
@@ -30,7 +30,7 @@ const LOGOUT_USER = gql`
 function Header() {
   const [state, dispatch] = useStoreContext();
 
-  const { user } = state
+  const { user } = state;
 
   const navigate = useNavigate();
 
@@ -43,10 +43,10 @@ function Header() {
 
     dispatch({
       type: UPDATE_USER,
-      user: null
-    })
+      user: null,
+    });
 
-    navigate('/')
+    navigate("/");
   };
 
   return (
@@ -101,7 +101,7 @@ function Header() {
                 {user ? (
                   <>
                     <NavLink
-                      to="/logout"
+                      onClick={logout}
                       className="hidden md:block text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                     >
                       Log Out
@@ -227,6 +227,7 @@ function Header() {
                 <>
                   <NavLink
                     to="/logout"
+                    onClick={logout}
                     className="mt-10 text-gray-400 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-small"
                   >
                     Log Out
