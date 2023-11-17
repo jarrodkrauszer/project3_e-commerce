@@ -58,7 +58,6 @@ function Auth({ isLogin }) {
     try {
       const resolverName = isLogin ? 'login' : 'register'
 
-      // const userData = await registerUser()
       const { data: userData } = await authenticateUser()
 
       setFormData({ ...initialFormData })
@@ -69,7 +68,7 @@ function Auth({ isLogin }) {
       })
 
       setErrorMessage('')
-      // navigate('/')
+      navigate('/')
 
     } catch (err) {
       console.log(err.message)

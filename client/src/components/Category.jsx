@@ -5,7 +5,7 @@ import { gql } from "@apollo/client";
 import Hat from "../assets/hats.png";
 import Jacket from "../assets/jackets.png";
 import Men from "../assets/men.png";
-import Women from "../assets/women.png";
+import Women from "../assets/womens.png";
 import Sneakers from "../assets/sneakers.png";
 
 const QUERY_PRODUCTS = gql`
@@ -21,7 +21,7 @@ const QUERY_PRODUCTS = gql`
   }
 `;
 
-const ProductsByCategory = () => {
+const Category = () => {
   const [category, setCategory] = useState(null);
   const { loading, error, data } = useQuery(QUERY_PRODUCTS, {
     variables: { category },
@@ -56,14 +56,8 @@ const ProductsByCategory = () => {
           onClick={() => handleCategoryClick("sneakers")}
         />
       </div>
-      {data.products.map((product) => (
-        <div key={product._id}>
-          <h3>{product.name}</h3>
-          <p>Category: {product.category.name}</p>
-        </div>
-      ))}
     </div>
   );
 };
 
-export default ProductsByCategory;
+export default Category;
