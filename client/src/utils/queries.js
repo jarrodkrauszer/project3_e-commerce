@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-export const AUTHENTICATE = gql`
+export const QUERY_AUTHENTICATE = gql`
   query Authenticate {
     authenticate {
       _id
@@ -11,7 +11,7 @@ export const AUTHENTICATE = gql`
   }
 `;
 
-export const CATEGORIES = gql`
+export const QUERY_CATEGORIES = gql`
   query Categories {
     categories {
       _id
@@ -20,7 +20,7 @@ export const CATEGORIES = gql`
   }
 `;
 
-export const PRODUCTS = gql`
+export const QUERY_PRODUCTS = gql`
   query Products($category: ID, $name: String) {
     products(category: $category, name: $name) {
       _id
@@ -33,7 +33,7 @@ export const PRODUCTS = gql`
   }
 `;
 
-export const PRODUCT = gql`
+export const QUERY_PRODUCT = gql`
   query Product($_id: ID!) {
     product(_id: $_id) {
       _id
@@ -46,7 +46,7 @@ export const PRODUCT = gql`
   }
 `;
 
-export const USER = gql`
+export const QUERY_USER = gql`
   query User {
     user {
       _id
@@ -69,7 +69,7 @@ export const USER = gql`
   }
 `;
 
-export const ORDER = gql`
+export const QUERY_ORDER = gql`
   query Order($_id: ID!) {
     order(_id: $_id) {
       _id
