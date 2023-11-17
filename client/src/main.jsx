@@ -4,6 +4,8 @@ import App from './App.jsx'
 import { BrowserRouter as Router } from 'react-router-dom'
 import './index.css'
 
+import { StoreProvider } from './store.jsx'
+
 import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink } from '@apollo/client'
 import { onError } from '@apollo/client/link/error'
 
@@ -31,9 +33,11 @@ const client = new ApolloClient({
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Router>
-      <ApolloProvider client={client}>
-        <App />
-      </ApolloProvider>
+      <StoreProvider>
+        <ApolloProvider client={client}>
+          <App />
+        </ApolloProvider>
+      </StoreProvider>
     </Router>
 
   </React.StrictMode>,
