@@ -8,7 +8,7 @@ import Men from "../../assets/men.png";
 import Women from "../../assets/womens.png";
 import Sneakers from "../../assets/sneakers.png";
 
-import './category.scss'
+import "./category.scss";
 
 const QUERY_PRODUCTS = gql`
   query Products($category: ID, $name: String) {
@@ -37,32 +37,51 @@ const Category = () => {
   };
 
   return (
-    <div>
-      <h2>Products by Category: {category}</h2>
-      <div className="category-container">
-        <div>
-          <img src={Hat} alt="Hat" onClick={() => handleCategoryClick("hat")} />
+    <div className="flex flex-col items-center py-3 bg-gray-700">
+      <div className="category-container mx-10 h-80">
+        <div className="flex-container">
+          <div>
+            <img
+              src={Hat}
+              alt="Hat"
+              className="object-contain w-full h-full px-1 transition duration-300 ease-in-out hover:brightness-75"
+              onClick={() => handleCategoryClick("hat")}
+            />
+          </div>
+          <div>
+            <img
+              src={Jacket}
+              alt="Jacket"
+              className="w-full h-full px-1 transition duration-300 ease-in-out hover:brightness-75"
+              onClick={() => handleCategoryClick("jacket")}
+            />
+          </div>
         </div>
-        <div>
+
+        <div className="flex-container">
           <img
-            src={Jacket}
-            alt="Jacket"
-            onClick={() => handleCategoryClick("jacket")}
+            src={Men}
+            alt="Men"
+            className="w-full h-full px-1 transition duration-300 ease-in-out hover:brightness-75"
+            onClick={() => handleCategoryClick("men")}
           />
         </div>
-        <div>
-          <img src={Men} alt="Men" onClick={() => handleCategoryClick("men")} />
-        </div>
-        <div>
+      </div>
+      <div className="category-container mx-10">
+        <div className="flex-container">
           <img
             src={Women}
             alt="Women"
+            className="w-full h-full px-1 transition duration-300 ease-in-out hover:brightness-75"
             onClick={() => handleCategoryClick("women")}
           />
         </div>
-        <div>
+
+        {/* New Row for the last two items */}
+        <div className="flex-container">
           <img
             src={Sneakers}
+            className="w-full h-full px-1 transition duration-300 ease-in-out hover:brightness-75 hover:scale-105"
             alt="Sneakers"
             onClick={() => handleCategoryClick("sneakers")}
           />
