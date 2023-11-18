@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { gql } from "@apollo/client";
+import { NavLink } from "react-router-dom";
 
 import Hat from "../../assets/hats.png";
 import Jacket from "../../assets/jackets.png";
@@ -25,55 +26,67 @@ const Category = () => {
     setCategory(category);
   };
 
+  const handleClick = (id) => {
+    dispatch({
+      type: UPDATE_CURRENT_CATEGORY,
+      currentCategory: id,
+    });
+  };
+
   return (
-    <div className="flex flex-col items-center py-3 bg-gray-700">
+    <div className="flex flex-col items-center py-3 bg-gray-700 category-cont">
       <div className="flex-container category-container ">
         <div className="flex-container">
-          <div>
+          <NavLink to="/products" onClick={() => handleCategoryClick("Hats")}>
             <img
               src={Hat}
               alt="Hat"
-              className="object-contain w-full h-full px-1 transition duration-300 ease-in-out hover:brightness-75 "
-              onClick={() => handleCategoryClick("hat")}
+              className="object-contain w-full h-full px-1 transition duration-300 ease-in-out hover:brightness-75 responsive-image"
             />
-          </div>
-          <div>
+          </NavLink>
+          <NavLink to="/products" onClick={() => handleCategoryClick("jacket")}>
             <img
               src={Jacket}
               alt="Jacket"
-              className="px-1 transition duration-300 ease-in-out hover:brightness-75 "
-              onClick={() => handleCategoryClick("jacket")}
+              className="px-1 transition duration-300 ease-in-out hover:brightness-75 responsive-image"
+            />
+          </NavLink>
+        </div>
+
+        <NavLink
+          to="/products"
+          onClick={() => handleClick("6557daeb5835043afd4692b8")}
+        >
+          <div className="flex-container w-full h-full">
+            <img
+              src={Men}
+              alt="Men"
+              className="px-1 w-full transition duration-300 ease-in-out hover:brightness-75 responsive-image"
             />
           </div>
-        </div>
-
-        <div className="flex-container w-full h-full">
-          <img
-            src={Men}
-            alt="Men"
-            className="px-1 w-full transition duration-300 ease-in-out hover:brightness-75 "
-            onClick={() => handleCategoryClick("men")}
-          />
-        </div>
+        </NavLink>
       </div>
-      <div className="flex-container category-container ">
-        <div className="flex-container w-full h-full">
-          <img
-            src={Women}
-            alt="Women"
-            className=" px-1 transition duration-300 ease-in-out hover:brightness-75 "
-            onClick={() => handleCategoryClick("women")}
-          />
-        </div>
 
-        <div className="flex-container">
-          <img
-            src={Sneakers}
-            className="px-1 transition duration-300 ease-in-out hover:brightness-75 "
-            alt="Sneakers"
-            onClick={() => handleCategoryClick("sneakers")}
-          />
-        </div>
+      <div className="flex-container category-container ">
+        <NavLink to="/products" onClick={() => handleCategoryClick("women")}>
+          <div className="flex-container w-full h-full">
+            <img
+              src={Women}
+              alt="Women"
+              className=" px-1 transition duration-300 ease-in-out hover:brightness-75 responsive-image"
+            />
+          </div>
+        </NavLink>
+
+        <NavLink to="/products" onClick={() => handleCategoryClick("sneakers")}>
+          <div className="flex-container">
+            <img
+              src={Sneakers}
+              className="px-1 transition duration-300 ease-in-out hover:brightness-75 responsive-image"
+              alt="Sneakers"
+            />
+          </div>
+        </NavLink>
       </div>
     </div>
   );

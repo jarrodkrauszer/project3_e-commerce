@@ -7,9 +7,13 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import { useStoreContext } from "../utils/store";
-import { UPDATE_USER, UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY, } from "../utils/actions";
+import {
+  UPDATE_USER,
+  UPDATE_CATEGORIES,
+  UPDATE_CURRENT_CATEGORY,
+} from "../utils/actions";
 
-import { QUERY_AUTHENTICATE, QUERY_CATEGORIES, } from "../utils/queries";
+import { QUERY_AUTHENTICATE, QUERY_CATEGORIES } from "../utils/queries";
 import { LOGOUT } from "../utils/mutations";
 
 // const navigation = [
@@ -26,12 +30,10 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-
-
 function Header() {
-  const [state, dispatch] = useStoreContext()
+  const [state, dispatch] = useStoreContext();
 
-  const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES)
+  const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
 
   const navigate = useNavigate();
 
@@ -70,6 +72,7 @@ function Header() {
   }, [categoryData, loading, dispatch]);
 
   const handleClick = (id) => {
+    console.log(id);
     dispatch({
       type: UPDATE_CURRENT_CATEGORY,
       currentCategory: id,
@@ -107,7 +110,7 @@ function Header() {
                   </a>
                 </div>
                 <div className="hidden sm:ml-6 sm:block justify-center">
-                  <div className="flex justify-center items-center space-x-4 mr-0">
+                  <div className="flex justify-center items-center space-x-4 mx-auto">
                     {navigation.map((item) => (
                       <NavLink
                         key={item._id}
