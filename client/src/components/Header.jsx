@@ -1,15 +1,16 @@
 import { useMutation, useQuery, gql } from "@apollo/client";
 
 import "../styles/header.scss";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import { useStoreContext } from "../utils/store";
-import { UPDATE_USER } from "../utils/actions";
+import { UPDATE_USER, UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY, } from "../utils/actions";
 
-import { QUERY_AUTHENTICATE } from "../utils/queries";
+import { QUERY_AUTHENTICATE, QUERY_CATEGORIES, } from "../utils/queries";
+import { LOGOUT } from "../utils/mutations";
 
 // const navigation = [
 //   { name: "Men's", href: "/products", current: true },
@@ -25,31 +26,16 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const LOGOUT_USER = gql`
-  mutation {
-    logout
-  }
-`;
 
-const GET_NAVIGATION = gql`
-  query GetNavigation {
-    navigation {
-      id
-      name
-      href
-      current
-    }
-  }
-`;
 
 function Header() {
-  const [state, dispatch] = useStoreContext();
+  const [state, dispatch] = useStoreContext()
 
-  const { data } = useQuery(GET_NAVIGATION);
+  const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES)
 
   const navigate = useNavigate();
 
-  const [logoutUser] = useMutation(LOGOUT_USER, {
+  const [logoutUser] = useMutation(LOGOUT, {
     refetchQueries: [QUERY_AUTHENTICATE],
   });
 
@@ -69,7 +55,28 @@ function Header() {
     }
   };
 
-  const navigation = data?.navigation || [];
+  useEffect(() => {
+    if (categoryData) {
+      dispatch({
+        type: UPDATE_CATEGORIES,
+        categories: categoryData.categories,
+      });
+    } else if (!loading) {
+      dispatch({
+        type: UPDATE_CATEGORIES,
+        categories: categories,
+      });
+    }
+  }, [categoryData, loading, dispatch]);
+
+  const handleClick = (id) => {
+    dispatch({
+      type: UPDATE_CURRENT_CATEGORY,
+      currentCategory: id,
+    });
+  };
+
+  const navigation = categoryData?.categories || [];
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -103,8 +110,11 @@ function Header() {
                   <div className="flex justify-center items-center space-x-4 mr-0">
                     {navigation.map((item) => (
                       <NavLink
-                        key={item.id}
-                        to={item.href}
+                        key={item._id}
+                        to="/products"
+                        onClick={() => {
+                          handleClick(item._id);
+                        }}
                         className={classNames(
                           item.current
                             ? "bg-gray-900 text-white"
@@ -233,8 +243,7 @@ function Header() {
               {navigation.map((item) => (
                 <Disclosure.Button
                   key={item.name}
-                  as="a"
-                  href={item.href}
+                  to="/products"
                   className={classNames(
                     item.current
                       ? "bg-gray-900 text-white"
