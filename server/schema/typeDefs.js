@@ -39,6 +39,13 @@ const typeDefs = gql`
     user: User
   }
 
+  type Navigation {
+    id: ID!
+    name: String
+    href: String
+    current: Boolean
+  }
+
   input ProductInput {
     _id: ID
     purchaseQuantity: Int
@@ -56,6 +63,7 @@ const typeDefs = gql`
     order(_id: ID!): Order
     checkout(products: [ProductInput]): Checkout
     authenticate: User
+    navigation: Navigation
   }
 
   # type Category {
@@ -148,7 +156,6 @@ const typeDefs = gql`
     ): Product!
     deleteProduct(id: ID!): Product!
   }
-
 `;
 
 module.exports = typeDefs;

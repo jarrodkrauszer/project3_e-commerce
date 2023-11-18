@@ -2,8 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useQuery, gql } from "@apollo/client";
 
-import { UPDATE_USER } from './utils/actions';
-
+import { UPDATE_USER } from "./utils/actions";
 import Header from "./components/Header";
 import Carousel from "./components/Carousel";
 
@@ -28,9 +27,8 @@ function App() {
   const { loading, error, data: userData } = useQuery(AUTHENTICATE);
 
   useEffect(() => {
-
     if (userData) {
-      console.log(userData.authenticate)
+      console.log(userData.authenticate);
       dispatch({
         type: UPDATE_USER,
         user: userData.authenticate,

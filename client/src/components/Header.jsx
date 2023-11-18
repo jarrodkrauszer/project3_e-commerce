@@ -1,4 +1,4 @@
-import { useMutation, gql } from "@apollo/client";
+import { useMutation, useQuery, gql } from "@apollo/client";
 
 import "../styles/header.scss";
 import { Fragment } from "react";
@@ -11,13 +11,15 @@ import { UPDATE_USER } from "../utils/actions";
 
 import { QUERY_AUTHENTICATE } from "../utils/queries";
 
-const navigation = [
-  { name: "Men's", href: "/products", current: true },
-  { name: "Women's", href: "/products", current: false },
-  { name: "Jackets", href: "/products", current: false },
-  { name: "Shirts", href: "/products", current: false },
-  { name: "Sneakers", href: "/products", current: false },
-];
+// const navigation = [
+//   { name: "Men's", href: "/products", current: true },
+//   { name: "Women's", href: "/products", current: false },
+//   { name: "Jackets", href: "/products", current: false },
+//   { name: "Shirts", href: "/products", current: false },
+//   { name: "Sneakers", href: "/products", current: false },
+// ];
+
+// const navigation = data?.navigation || [];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -29,8 +31,21 @@ const LOGOUT_USER = gql`
   }
 `;
 
+const GET_NAVIGATION = gql`
+  query GetNavigation {
+    navigation {
+      id
+      name
+      href
+      current
+    }
+  }
+`;
+
 function Header() {
   const [state, dispatch] = useStoreContext();
+
+  const { data } = useQuery(GET_NAVIGATION);
 
   const navigate = useNavigate();
 
@@ -53,6 +68,8 @@ function Header() {
       console.log(error);
     }
   };
+
+  const navigation = data?.navigation || [];
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -86,7 +103,7 @@ function Header() {
                   <div className="flex justify-center items-center space-x-4 mr-0">
                     {navigation.map((item) => (
                       <NavLink
-                        key={item.name}
+                        key={item.id}
                         to={item.href}
                         className={classNames(
                           item.current
