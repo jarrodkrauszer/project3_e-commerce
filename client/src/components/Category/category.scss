@@ -1,5 +1,5 @@
 .category-container {
-  min-width: 30%;
+  // min-width: 30%;
   width: 80%;
   height: 300px;
   flex: 1 1 auto;
@@ -40,5 +40,11 @@
     height: 100%;
     background-size: cover;
     background-position: center;
+  }
+}
+
+@media screen and (max-width: 477px) {
+  .category-container {
+    width: 30%;
   }
 }
