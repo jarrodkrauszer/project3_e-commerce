@@ -17,6 +17,9 @@ export const REGISTER = gql`
       firstName
       lastName
       email
+      orders {
+        _id
+      }
     }
   }
 `;

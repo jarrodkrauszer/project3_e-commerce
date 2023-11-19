@@ -1,7 +1,7 @@
 import ProductList from "../components/ProductList";
 import Cart from "../components/Cart";
 
-const Product = () => {
+const Products = () => {
   return (
     <div className="container-home">
       <ProductList />
@@ -10,4 +10,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default Products;

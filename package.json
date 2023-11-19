@@ -17,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@apollo/client": "^3.8.7",
     "@stripe/stripe-js": "^2.1.11",
     "concurrently": "^8.2.2",
     "jsonwebtoken": "^9.0.2",

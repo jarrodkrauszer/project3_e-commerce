@@ -11,24 +11,17 @@ import Product from "./pages/Product";
 import ProductViews from "./pages/ProductV";
 
 import { useStoreContext } from "./utils/store";
+import OrderHistory from "./pages/OrderHistory";
 
-const AUTHENTICATE = gql`
-  query {
-    authenticate {
-      _id
-      email
-    }
-  }
-`;
+import { QUERY_AUTHENTICATE } from "../src/utils/queries";
 
 function App() {
   const [state, dispatch] = useStoreContext();
 
-  const { loading, error, data: userData } = useQuery(AUTHENTICATE);
+  const { loading, error, data: userData } = useQuery(QUERY_AUTHENTICATE);
 
   useEffect(() => {
     if (userData) {
-      console.log(userData.authenticate);
       dispatch({
         type: UPDATE_USER,
         user: userData.authenticate,
@@ -51,6 +44,7 @@ function App() {
 
         <Route path="/register" element={<Auth isLogin={false} />} />
         <Route path="/login" element={<Auth isLogin={true} />} />
+        <Route path="/order-history" element={<OrderHistory />} />
 
         {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
