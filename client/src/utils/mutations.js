@@ -65,16 +65,30 @@ export const UPDATE_PRODUCT = gql`
 export const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
-      token
-      user {
+      _id
+      firstName
+      lastName
+      email
+      orders {
         _id
-        firstName
-        lastName
-        email
       }
     }
   }
 `;
+
+// export const LOGIN = gql`
+//   mutation Login($email: String!, $password: String!) {
+//     login(email: $email, password: $password) {
+//       token
+//       user {
+//         _id
+//         firstName
+//         lastName
+//         email
+//       }
+//     }
+//   }
+// `;
 
 export const LOGOUT = gql`
   mutation Logout {

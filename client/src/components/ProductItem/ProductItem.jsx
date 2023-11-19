@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useStoreContext } from "../../utils/store";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
+import { pluralize } from "../../utils/helpers"
 
 import './product.scss'
 
@@ -55,9 +56,13 @@ function ProductItem(item) {
                   {/* </a> */}
                 </h3>
               </div>
-              <p className="text-md font-medium text-gray-900">{price}</p>
-              <p className="text-md font-medium text-gray-900">{quantity}</p>
+              <p className="text-md font-medium text-gray-900">${price}</p>
+
             </div>
+            <div className="quantity">
+              <p className="text-md font-medium text-gray-900">{quantity} {pluralize("item", quantity)} in stock</p>
+            </div>
+
           </div>
 
         </div>

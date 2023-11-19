@@ -48,7 +48,7 @@ const Category = () => {
             <img
               src={Jacket}
               alt="Jacket"
-              className="px-1 transition duration-300 ease-in-out hover:brightness-75 responsive-image"
+              className="mt-1.5 px-1 transition duration-300 ease-in-out hover:brightness-75 responsive-image"
             />
           </NavLink>
         </div>

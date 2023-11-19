@@ -1,5 +1,5 @@
 const { User, Product, Category, Order } = require("../models");
-const { signToken, AuthenticationError } = require("../auth");
+const { signToken, AuthenticationError } = require("../utils/auth");
 
 const { createToken } = require('../auth');
 
@@ -118,8 +118,8 @@ const resolvers = {
         { new: true }
       );
     },
-    login: async (_, { email, password }) => {
-      const user = await User.findOne({ email });
+    login: async (_, { email, password }, context) => {
+      const user = await User.findOne({ email }).populate('orders');
 
       if (!user) {
         throw AuthenticationError;
@@ -131,9 +131,14 @@ const resolvers = {
         throw AuthenticationError;
       }
 
-      const token = signToken(user);
+      const token = createToken(user._id);
 
-      return { token, user };
+      context.res.cookie('token', token, {
+        maxAge: 60 * 60 * 1000,
+        httpOnly: true
+      })
+
+      return user
     },
 
     logout(_, __, context) {
