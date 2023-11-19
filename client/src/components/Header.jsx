@@ -16,21 +16,13 @@ import {
 import { QUERY_AUTHENTICATE, QUERY_CATEGORIES } from "../utils/queries";
 import { LOGOUT } from "../utils/mutations";
 
-// const navigation = [
-//   { name: "Men's", href: "/products", current: true },
-//   { name: "Women's", href: "/products", current: false },
-//   { name: "Jackets", href: "/products", current: false },
-//   { name: "Shirts", href: "/products", current: false },
-//   { name: "Sneakers", href: "/products", current: false },
-// ];
-
-// const navigation = data?.navigation || [];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 function Header() {
+
   const [state, dispatch] = useStoreContext();
 
   const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
@@ -40,6 +32,7 @@ function Header() {
   const [logoutUser] = useMutation(LOGOUT, {
     refetchQueries: [QUERY_AUTHENTICATE],
   });
+
 
   const logout = async (e) => {
     e.preventDefault();
@@ -135,7 +128,7 @@ function Header() {
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {state.user ? (
                   <>
-                    <p>{state.user.email}</p>
+                    <p className="welcome">Welcome, {state.user.firstName}</p>
                     <a
                       href="/logout"
                       onClick={logout}
@@ -164,6 +157,7 @@ function Header() {
                 <button
                   type="button"
                   className="relative ml-3 rounded-full bg-gray-600 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                // onClick={toggleCart}
                 >
                   🛒
                   <span className="absolute -inset-1.5" />

@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
-import { useStoreContext } from '../utils/store';
-import { UPDATE_PRODUCTS } from '../utils/actions';
+import { useStoreContext } from '../../utils/store';
+import { UPDATE_PRODUCTS } from '../../utils/actions';
 import { useQuery } from '@apollo/client';
-import { QUERY_PRODUCTS, QUERY_ALL_PRODUCTS } from '../utils/queries';
+import { QUERY_PRODUCTS, QUERY_ALL_PRODUCTS } from '../../utils/queries';
 
-import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../utils/actions';
+import { ADD_TO_CART, UPDATE_CART_QUANTITY } from '../../utils/actions';
 
-import ProductItem from '../components/ProductItem/ProductItem';
+import ProductItem from '../ProductItem/ProductItem';
 
 
 function ProductList() {

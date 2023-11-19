@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useMutation, gql } from '@apollo/client'
 import { UPDATE_USER } from '../utils/actions';
+import { REGISTER, LOGIN } from '../utils/mutations';
 
 import { useState } from 'react'
 
@@ -13,25 +14,25 @@ const initialFormData = {
   password: ''
 }
 
-const REGISTER_USER = gql`
-  mutation RegisterUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
-    register(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
-      _id
-      firstName
-      lastName
-      email
-    }
-  }
-`
+// const REGISTER_USER = gql`
+//   mutation RegisterUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
+//     register(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
+//       _id
+//       firstName
+//       lastName
+//       email
+//     }
+//   }
+// `
 
-const LOGIN_USER = gql`
-  mutation LoginUser($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      _id
-      email
-    }
-  }
-`
+// const LOGIN_USER = gql`
+//   mutation LoginUser($email: String!, $password: String!) {
+//     login(email: $email, password: $password) {
+//       _id
+//       email
+//     }
+//   }
+// `
 
 function Auth({ isLogin }) {
   const [, dispatch] = useStoreContext();
@@ -40,7 +41,7 @@ function Auth({ isLogin }) {
   const [errorMessage, setErrorMessage] = useState('')
 
 
-  const [authenticateUser] = useMutation(isLogin ? LOGIN_USER : REGISTER_USER, {
+  const [authenticateUser] = useMutation(isLogin ? LOGIN : REGISTER, {
     variables: formData
   })
 
