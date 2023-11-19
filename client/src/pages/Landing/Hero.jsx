@@ -9,30 +9,42 @@ import Women from "../../assets/men.png"
 import Sneakers from "../../assets/sneakers.png"
 
 function Hero() {
+  
   const [state, dispatch] = useStoreContext();
+  const imageSize = {
+    width: '100%',
+    height: '550px'
+  };
 
+  const legendStyle = {
+    color: '#FFF', // Set the text color
+    fontSize: '24px', // Set the font size
+    // textAlign: 'center', // Set the text alignment
+    background: 'transparent', // Set the background color and opacity
+    
+  };
   return (
     <div>
       <Carousel autoPlay={true} infiniteLoop={true} showThumbs={false}>
         <div>
-          <p className="legend">30% off all Jackets</p>
-          <img src={Jacket} />
+          <img src={Jacket} style={imageSize} />
+          <p className="legend" style={legendStyle}>70% Off!</p>
         </div>
         <div>
-          <p className="legend">Some sale on Men's items</p>
-          <img src={Men} />
+          <img src={Men} style={imageSize} />
+          <p className="legend" style={legendStyle}>Legend 2</p>
         </div>
         <div>
-          <p className="legend">Some sale on Hats</p>
-          <img src={Hat} />
+          <img src={Hat} style={imageSize} />
+          <p className="legend" style={legendStyle}>Legend 3</p>
         </div>
         <div>
-          <p className="legend">Some sale on Women's items</p>
-          <img src={Women} />
+          <img src={Women} style={imageSize} />
+          {/* Add legend or other content if needed */}
         </div>
         <div>
-          <p className="legend">Sale on sneakers</p>
-          <img src={Sneakers} />
+          <img src={Sneakers} style={imageSize} />
+          {/* Add legend or other content if needed */}
         </div>
       </Carousel>
     </div>
