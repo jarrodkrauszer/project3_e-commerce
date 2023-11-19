@@ -49,7 +49,7 @@ function ProductItem(item) {
 
             <div className="mt-4 flex justify-between">
               <div>
-                <h3 className="text-md text-gray-700">
+                <h3 className="text-md font-medium text-gray-700">
                   {/* <a href={product.href}> */}
                   {/* <span aria-hidden="true" className="absolute inset-0" /> */}
                   {name}

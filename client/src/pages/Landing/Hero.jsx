@@ -13,7 +13,7 @@ function Hero() {
 
   return (
     <div>
-      <Carousel autoPlay={true} infiniteLoop={true}>
+      <Carousel autoPlay={true} infiniteLoop={true} showThumbs={false}>
         <div>
           <p className="legend">30% off all Jackets</p>
           <img src={Jacket} />
