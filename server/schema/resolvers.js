@@ -1,6 +1,8 @@
 const { User, Product, Category, Order } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
-
+const stripe = require("stripe")(
+  "pk_test_51KS4c3LP4bQ57Nn2yNejMZC0kTuxw2KBt3ElfwJPtLUBAIlcKZGzmRujrAZoaqHHMS064NNvU3NjnLkQkuPFfBtl00uX3pHOlG"
+);
 const { createToken } = require("../auth");
 
 const resolvers = {
@@ -47,6 +49,16 @@ const resolvers = {
           quantity: product.purchaseQuantity,
         });
       }
+
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ["card"],
+        line_items,
+        mode: "payment",
+        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${url}/`,
+      });
+
+      return { session: session.id };
     },
 
     product: async (_, { _id }) => {
