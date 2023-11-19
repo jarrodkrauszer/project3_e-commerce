@@ -1,7 +1,7 @@
 const { User, Product, Category, Order } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
-const { createToken } = require('../auth');
+const { createToken } = require("../auth");
 
 const resolvers = {
   Query: {
@@ -26,6 +26,29 @@ const resolvers = {
 
       return await Product.find(params).populate("category");
     },
+    checkout: async (parent, args, context) => {
+      // const url = new URL(context.headers.referer).origin;
+      console.log(context.header);
+
+      await Order.create({ products: args.products.map(({ _id }) => _id) });
+      const line_items = [];
+
+      for (const product of args.products) {
+        line_items.push({
+          price_data: {
+            currency: "usd",
+            product_data: {
+              name: product.name,
+              description: product.description,
+              images: [`{product.imageUrl}`],
+            },
+            unit_amount: product.price * 100,
+          },
+          quantity: product.purchaseQuantity,
+        });
+      }
+    },
+
     product: async (_, { _id }) => {
       return await Product.findById(_id).populate("category");
     },
@@ -55,36 +78,32 @@ const resolvers = {
 
       throw AuthenticationError;
     },
-
   },
   Mutation: {
     async register(_, args, context) {
       try {
-
         const user = await User.create(args);
 
         const token = await createToken(user._id);
 
         // Authenticate/Log In User
-        context.res.cookie('token', token, {
-          maxAge: 60 * 60 * 1000,     // 1 hour
+        context.res.cookie("token", token, {
+          maxAge: 60 * 60 * 1000, // 1 hour
           httpOnly: true,
-          secure: process.env.PORT ? true : false
+          secure: process.env.PORT ? true : false,
         });
 
         return user;
-
       } catch (err) {
         let message;
 
         if (err.code === 11000) {
-          message = 'That email address is already in use.'
+          message = "That email address is already in use.";
         } else {
           message = err.message;
         }
 
         throw new Error(message);
-
       }
     },
     createOrder: async (_, { products }, context) => {
@@ -119,7 +138,7 @@ const resolvers = {
       );
     },
     login: async (_, { email, password }, context) => {
-      const user = await User.findOne({ email }).populate('orders');
+      const user = await User.findOne({ email }).populate("orders");
 
       if (!user) {
         throw AuthenticationError;
@@ -133,21 +152,20 @@ const resolvers = {
 
       const token = createToken(user._id);
 
-      context.res.cookie('token', token, {
+      context.res.cookie("token", token, {
         maxAge: 60 * 60 * 1000,
-        httpOnly: true
-      })
+        httpOnly: true,
+      });
 
-      return user
+      return user;
     },
 
     logout(_, __, context) {
-      context.res.clearCookie('token');
+      context.res.clearCookie("token");
 
-      return 'User logged out successfully!'
-    }
+      return "User logged out successfully!";
+    },
   },
 };
 
 module.exports = resolvers;
-
