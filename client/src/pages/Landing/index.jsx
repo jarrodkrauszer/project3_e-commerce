@@ -4,7 +4,7 @@ import Category from "../../components/Category/Category";
 function Landing() {
   return (
     <>
-      <section className="text-center pt-5">
+      <section className="text-center pt-5 ">
         <Hero />
         <Category />
       </section>

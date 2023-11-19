@@ -42,10 +42,16 @@
     background-position: center;
   }
 }
-
-@media screen and (max-width: 477px) {
+.category-text {
+  font-size: xx-large;
+  padding: 2px;
+}
+@media screen and (max-width: 600px) {
   .category-container {
     width: 30%;
+  }
+  .category-text {
+    font-size: medium;
   }
 }
 
