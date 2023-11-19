@@ -4,7 +4,7 @@
   right: 0;
   min-width: 20%;
   max-width: 30%;
-  max-height: 60%;
+  max-height: 75%;
   background-color: #fafafa;
   overflow: auto;
   padding: 0.5rem;
@@ -33,7 +33,7 @@
 
 .cart-closed {
   position: fixed;
-  top: 2%;
+  top: 1%;
   right: 1%;
   font-size: 2rem;
   cursor: pointer;
@@ -57,6 +57,27 @@
   width: 50px;
   padding: 0;
   margin: 0 0.5rem 1rem 0;
+}
+
+button {
+  font-size: 1.2rem;
+  text-decoration: none;
+  padding: 0.25rem 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin: 0 0.5rem;
+  background-color: #F3A847;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button[disabled] {
+  cursor: default;
+  opacity: 0.8;
 }
 
 @media screen and (max-width: 768px) {

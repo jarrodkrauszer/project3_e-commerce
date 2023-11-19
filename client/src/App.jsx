@@ -7,7 +7,7 @@ import Header from "./components/Header";
 
 import Auth from "./pages/Auth";
 import Landing from "./pages/Landing";
-import Product from "./pages/Product";
+import Products from "./pages/Products";
 
 import { useStoreContext } from "./utils/store";
 import OrderHistory from "./pages/OrderHistory";
@@ -21,7 +21,6 @@ function App() {
 
   useEffect(() => {
     if (userData) {
-      console.log(userData.authenticate);
       dispatch({
         type: UPDATE_USER,
         user: userData.authenticate,
@@ -39,7 +38,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/products" element={<Product />} />
+        <Route path="/products" element={<Products />} />
         <Route path="/register" element={<Auth isLogin={false} />} />
         <Route path="/login" element={<Auth isLogin={true} />} />
         <Route path="/order-history" element={<OrderHistory />} />

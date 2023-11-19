@@ -172,7 +172,7 @@ const resolvers = {
         throw AuthenticationError;
       }
 
-      const token = createToken(user._id);
+      const token = await createToken(user._id);
 
       context.res.cookie("token", token, {
         maxAge: 60 * 60 * 1000,
