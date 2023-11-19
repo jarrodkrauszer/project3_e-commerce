@@ -10,6 +10,7 @@ import Landing from "./pages/Landing";
 import Product from "./pages/Product";
 
 import { useStoreContext } from "./utils/store";
+import OrderHistory from "./pages/OrderHistory";
 
 const AUTHENTICATE = gql`
   query {
@@ -48,6 +49,7 @@ function App() {
         <Route path="/products" element={<Product />} />
         <Route path="/register" element={<Auth isLogin={false} />} />
         <Route path="/login" element={<Auth isLogin={true} />} />
+        <Route path="/order-history" element={<OrderHistory />} />
 
         {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>

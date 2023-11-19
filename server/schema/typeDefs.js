@@ -61,58 +61,11 @@ const typeDefs = gql`
     product(_id: ID!): Product
     user: User
     order(_id: ID!): Order
+    orderHistory: [Order!]
     checkout(products: [ProductInput]): Checkout
     authenticate: User
     navigation: Navigation
   }
-
-  # type Category {
-  #   _id: ID!
-  #   name: String!
-  #   createdAt: String!
-  #   updatedAt: String!
-  # }
-
-  # type Order {
-  #   _id: ID!
-  #   purchaseDate: String!
-  #   products: [Product!]!
-  #   createdAt: String!
-  #   updatedAt: String!
-  # }
-
-  # type User {
-  #   _id: ID!
-  #   firstName: String!
-  #   lastName: String!
-  #   email: String!
-  #   password: String!
-  #   orders: [Order!]!
-  #   createdAt: String!
-  #   updatedAt: String!
-  # }
-  # type Product {
-  #   _id: ID!
-  #   name: String!
-  #   imageUrl: String
-  #   description: String
-  #   price: Float!
-  #   quantity: Int!
-  #   category: Category!
-  #   createdAt: String!
-  #   updatedAt: String!
-  # }
-
-  # type Query {
-  #   categories: [Category!]!
-  #   category(id: ID!): Category
-  #   orders: [Order!]!
-  #   order(id: ID!): Order
-  #   users: [User!]!
-  #   user(id: ID!): User
-  #   products: [Product!]!
-  #   product(id: ID!): Product
-  # }
 
   type Mutation {
     createCategory(name: String!): Category!

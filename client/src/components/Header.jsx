@@ -2,6 +2,7 @@ import "../styles/header.scss";
 import { Fragment, useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useMutation, useQuery } from "@apollo/client";
 import { NavLink, useNavigate } from "react-router-dom";
 import Logo from "../assets/logo.png";
 import { useStoreContext } from "../utils/store";

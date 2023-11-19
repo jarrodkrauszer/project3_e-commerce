@@ -10,7 +10,6 @@ const app = express();
 const PORT = process.env.PORT || 3333;
 const is_prod = process.env.NODE_ENV === "production";
 
-
 const db = require("./config/connection");
 
 const { typeDefs, resolvers } = require("./schema");
