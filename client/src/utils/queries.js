@@ -71,24 +71,23 @@ export const QUERY_PRODUCT = gql`
   }
 `;
 
+
 export const QUERY_USER = gql`
-  query User {
+  {
     user {
-      _id
       firstName
       lastName
-      email
       orders {
         _id
+        purchaseDate
         products {
           _id
           name
-          category {
-            _id
-            name
-          }
+          description
+          price
+          quantity
+          imageUrl
         }
-        purchaseDate
       }
     }
   }
