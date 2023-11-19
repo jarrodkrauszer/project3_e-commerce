@@ -5,7 +5,7 @@ import { Fragment, useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink, useNavigate } from "react-router-dom";
-
+import Logo from "../assets/logo.png"
 import { useStoreContext } from "../utils/store";
 import {
   UPDATE_USER,
@@ -75,7 +75,7 @@ function Header() {
   const navigation = categoryData?.categories || [];
 
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-black">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-full px-2 sm:px-6 lg:px-8">
@@ -97,7 +97,7 @@ function Header() {
                   <a href="/">
                     <img
                       className="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                      src={Logo}
                       alt="Your Company"
                     />
                   </a>

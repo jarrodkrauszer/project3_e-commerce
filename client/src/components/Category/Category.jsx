@@ -34,7 +34,7 @@ const Category = () => {
   };
 
   return (
-    <div className="flex flex-col items-center py-3 bg-gray-700 category-cont">
+    <div className="flex flex-col items-center py-3 bg-white category-cont">
       <div className="flex-container category-container ">
         <div className="flex-container">
           <NavLink to="/products" onClick={() => handleCategoryClick("Hats")}>
