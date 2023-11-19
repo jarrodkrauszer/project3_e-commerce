@@ -14,6 +14,8 @@ function ProductList() {
 
   const { loading, data } = useQuery(QUERY_PRODUCTS);
 
+
+
   useEffect(() => {
     if (data) {
       dispatch({
@@ -22,6 +24,16 @@ function ProductList() {
       });
     }
   }, [data, loading, dispatch]);
+
+  function getCategoryName() {
+    const category = state.categories.find(category => {
+      return category._id === state.currentCategory
+    })
+
+    if (!category) return "Product Page"
+
+    return category.name
+  }
 
 
   function filterProducts() {
@@ -37,8 +49,10 @@ function ProductList() {
 
   return (
     <div className="bg-white">
-      <h1>Product Page</h1>
-      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+      <div className='category-name-container'>
+        <h1 className="category-name">{getCategoryName()}</h1>
+      </div>
+      <div className="mx-auto max-w-2xl px-4 py-10 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
 
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {filterProducts().map((product) => (

@@ -1,0 +1,15 @@
+.add-to-cart-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+
+  .add-to-cart-btn {
+    background: #d6d5d5;
+    padding: .5rem 3rem;
+    font-size: 1.2rem;
+
+    &:hover {
+      opacity: 0.55;
+    }
+  }
+}
