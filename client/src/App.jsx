@@ -4,7 +4,6 @@ import { useQuery, gql } from "@apollo/client";
 
 import { UPDATE_USER } from "./utils/actions";
 import Header from "./components/Header";
-import Carousel from "./components/Carousel";
 
 import Auth from "./pages/Auth";
 import Landing from "./pages/Landing";
