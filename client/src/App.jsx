@@ -28,7 +28,7 @@ function App() {
 
   useEffect(() => {
     if (userData) {
-      console.log(userData.authenticate)
+      console.log(userData.authenticate);
       dispatch({
         type: UPDATE_USER,
         user: userData.authenticate,
