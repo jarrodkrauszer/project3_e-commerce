@@ -29,7 +29,7 @@ const resolvers = {
       return await Product.find(params).populate("category");
     },
     checkout: async (parent, args, context) => {
-      // const url = new URL(context.headers.referer).origin;
+      const url = new URL(context.headers.referer).origin;
       console.log(context.header);
 
       await Order.create({ products: args.products.map(({ _id }) => _id) });
