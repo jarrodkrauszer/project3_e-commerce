@@ -6,7 +6,7 @@ function Landing() {
   return (
     <>
       <section className="text-center pt-5">
-        {/* <Header /> */}
+
         <Hero />
         <Category />
       </section>
