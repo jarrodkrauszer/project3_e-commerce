@@ -60,6 +60,16 @@ const resolvers = {
 
       return { session: session.id };
     },
+    orderHistory: async (_, __, { user }) => {
+      if (!user) {
+        throw new AuthenticationError(
+          "You must be logged in to view your order history."
+        );
+      }
+      // Fetch and return the order history for the user
+      const orderHistory = await Order.find({ userId: user.id });
+      return orderHistory;
+    },
 
     product: async (_, { _id }) => {
       return await Product.findById(_id).populate("category");
