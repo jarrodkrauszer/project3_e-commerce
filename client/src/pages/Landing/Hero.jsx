@@ -2,9 +2,6 @@ import { useStoreContext } from "../../utils/store";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import { Carousel } from "react-responsive-carousel";
-import whiteBackground from "../../assets/white-background.png";
-import blackBackground from "../../assets/black-background.jpg";
-import whiteBackground2 from "../../assets/white-background2.jpg";
 import Logo from "../../assets/logo.png";
 
 function Hero() {
@@ -44,28 +41,28 @@ function Hero() {
   return (
     <div>
 
-     <img
-     style={{filter:'invert(1)'}}
-     className="mx-auto h-15 w-auto invert-colors"
-     src={Logo}/>
-     <h1 style={titleStyle}>UrbanVogue</h1>
-  
+      <img
+        style={{ filter: 'invert(1)' }}
+        className="mx-auto h-15 w-auto invert-colors"
+        src={`/images/logo.png`} />
+      <h1 style={titleStyle}>UrbanVogue</h1>
+
       <Carousel autoPlay={true} infiniteLoop={true} showThumbs={false} showStatus={false}>
 
         <div>
-          <img src={whiteBackground} style={imageSize} />
+          <img src={`/images/white-background.png`} style={imageSize} />
           <p className="legend" style={legendStyle}>
             70% Sale on all Menswear
           </p>
         </div>
         <div>
-          <img src={blackBackground} style={imageSize} />
+          <img src={`/images/black-background.png`} style={imageSize} />
           <p className="legend" style={altLegendStyle}>
             50% Sale on all Shoes
           </p>
         </div>
         <div>
-          <img src={whiteBackground2} style={imageSize} />
+          <img src={`/images/white-background.png2`} style={imageSize} />
           <p className="legend" style={legendStyle}>
             20% off all Hats
           </p>
