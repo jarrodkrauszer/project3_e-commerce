@@ -15,7 +15,7 @@ async function createToken(user_id) {
 async function authenticate({ req, res }) {
   const token = req.cookies.token;
 
-  if (!token) return { res: res }; // will be our context
+  if (!token) return { req, res }; // will be our context
   // if (!token) return { res }
 
   try {
@@ -25,10 +25,10 @@ async function authenticate({ req, res }) {
 
     const user = await User.findById(data.user_id).populate("orders");
 
-    return { user: user, res: res };
+    return { user, req, res };
   } catch (err) {
     console.log(err.message);
-    return { res: res };
+    return { req, res };
   }
 }
 
