@@ -1,21 +1,24 @@
 import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
-
 function OrderHistory() {
   const { data } = useQuery(QUERY_USER);
   let user;
-
   if (data) {
     user = data.user;
   }
-
   return (
     <>
-      <div className="container my-1">
+      <div>
+        {" "}
+        {/* Remove the container class */}
         {user ? (
-          <>
-            <h2>{user.username}'s Order History</h2>
+          <div className="flex justify-center">
+            {" "}
+            {/* Add flex and justify-center classes */}
+            <h2 className="text-center font-bold text-4xl py-8">
+              {user.firstName}'s Order History
+            </h2>
             {user.orders.map((order) => (
               <div key={order._id} className="my-2">
                 <h3>
@@ -36,11 +39,10 @@ function OrderHistory() {
                 </div>
               </div>
             ))}
-          </>
+          </div>
         ) : null}
       </div>
     </>
   );
 }
-
 export default OrderHistory;

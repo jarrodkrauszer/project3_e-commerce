@@ -83,7 +83,7 @@ function Header() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <a href="/">
+                  <a href="/" className="flex items-center px-1">
                     <img className="h-8 w-auto" src={Logo} alt="Your Company" />
                   </a>
                 </div>
