@@ -4,18 +4,18 @@ import { ADD_ORDER } from '../utils/mutations';
 import { useStoreContext } from '../utils/store'
 
 function OrderProcessed() {
-  const [state, dispatch] = useStoreContext();
+  // const [state, dispatch] = useStoreContext();
   const [addOrder] = useMutation(ADD_ORDER);
-  console.log('Cart: ', state)
 
   useEffect(() => {
     async function saveOrder() {
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      const products = cart.map(item => item._id)
+      const products = cart.map((item) => item._id)
+      localStorage.clear()
+
 
       if (products.length) {
-        const { data } = await addOrder({ variables: { products } });
-
+        const { data } = await addOrder({ variables: { products } })
       }
 
       setTimeout(() => {
