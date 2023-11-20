@@ -93,11 +93,6 @@ function Category() {
                 className="block h-full w-full rounded-lg object-cover object-center "
                 src={Hat}
               />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <p className="category-text text-white  font-bold bg-black rounded-lg p-3">
-                  Hats
-                </p>
-              </div>
             </NavLink>
           </div>
           <div className="w-1/2 p-1 md:p-2 hover:opacity-75">
