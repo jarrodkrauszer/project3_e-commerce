@@ -9,11 +9,11 @@ function OrderProcessed() {
 
   useEffect(() => {
     async function saveOrder() {
+      console.log('Save:', state)
+      // if (state.cart.products.length) {
+      //   const { data } = await addOrder({ variables: { products } });
 
-      if (state.cart.products.length) {
-        const { data } = await addOrder({ variables: { products } });
-
-      }
+      // }
 
       setTimeout(() => {
         window.location.assign('/');
