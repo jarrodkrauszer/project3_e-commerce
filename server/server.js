@@ -29,6 +29,7 @@ async function startServer() {
   // Serve up static assets
   app.use('/images', express.static(path.join(__dirname, '../client/public/images')));
 
+
   // Open cookie middleware channel so we can view cookies on the request object
   app.use(cookieParser());
 
