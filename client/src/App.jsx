@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import Auth from "./pages/Auth";
 import Landing from "./pages/Landing";
 import Products from "./pages/Products";
+import OrderProcessed from "./pages/OrderProcessed";
 
 import { useStoreContext } from "./utils/store";
 import OrderHistory from "./pages/OrderHistory";
@@ -42,6 +43,7 @@ function App() {
         <Route path="/register" element={<Auth isLogin={false} />} />
         <Route path="/login" element={<Auth isLogin={true} />} />
         <Route path="/order-history" element={<OrderHistory />} />
+        <Route path="/success" element={<OrderProcessed />} />
 
         {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>

@@ -15,26 +15,6 @@ const initialFormData = {
   password: ''
 }
 
-// const REGISTER_USER = gql`
-//   mutation RegisterUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
-//     register(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
-//       _id
-//       firstName
-//       lastName
-//       email
-//     }
-//   }
-// `
-
-// const LOGIN_USER = gql`
-//   mutation LoginUser($email: String!, $password: String!) {
-//     login(email: $email, password: $password) {
-//       _id
-//       email
-//     }
-//   }
-// `
-
 function Auth({ isLogin }) {
   const [, dispatch] = useStoreContext();
   const [formData, setFormData] = useState(initialFormData)
@@ -91,7 +71,7 @@ function Auth({ isLogin }) {
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm" >
           <img
-            style={{filter:'invert(1)'}}
+            style={{ filter: 'invert(1)' }}
             className="mx-auto h-10 w-auto invert-colors"
             src={Logo}
             alt="Your Company"
@@ -99,6 +79,7 @@ function Auth({ isLogin }) {
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             {isLogin ? 'Sign in to your account' : 'Register'}
           </h2>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
