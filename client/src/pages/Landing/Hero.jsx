@@ -5,6 +5,7 @@ import { Carousel } from 'react-responsive-carousel';
 import whiteBackground from "../../assets/white-background.png";
 import blackBackground from "../../assets/black-background.jpg"
 import whiteBackground2 from "../../assets/white-background2.jpg"
+import Logo from "../../assets/logo.png"
 
 function Hero() {
   
@@ -33,10 +34,27 @@ function Hero() {
     marginBottom: '200px'
 
   }
+
+  const titleStyle = {
+    color: 'black',
+    fontSize: '64px',
+    background: 'transparent',
+    fontFamily: 'Raleway',
+    fontWeight: 'bold',
+  }
+
     
     
   return (
     <div>
+     <h1 style={titleStyle}>Test</h1>
+     <img
+     
+     style={{filter:'invert(1)'}}
+     className="mx-auto h-10 w-auto invert-colors"
+     src={Logo}/>
+    
+  
       <Carousel autoPlay={true} infiniteLoop={true} showThumbs={false} showStatus={false}>
         {/* <div>
           <img src={Jacket} style={imageSize} />
