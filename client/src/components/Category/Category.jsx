@@ -27,72 +27,123 @@ function Category() {
       currentCategory: id,
     });
   };
+
+  const altLegendStyle = {
+    color: "white",
+    fontSize: "48px",
+    // background: "white",
+    fontFamily: "Raleway",
+    fontWeight: "bold",
+  };
+
   return (
     <div className="container mx-auto px-5 py-2 lg:px-32 lg:pt-24">
       <div className="-m-1 flex flex-wrap md:-m-2">
         <div className="flex w-1/2 flex-wrap">
-          <div className="w-full p-1 md:p-2 hover:opacity-75">
+          <div className="relative w-full m-1 md:m-2 group bg-black hover: rounded-lg transition-all duration-1000">
             <NavLink
               to="/products"
               onClick={() => handleClick(navigation[0]._id)}
             >
               <img
                 alt={"Mens Clothing"}
-                className="block h-full w-full rounded-lg object-cover object-center hover:opacity-75 transition-opacity duration-300"
+                className="block h-full w-full rounded-lg object-cover object-center group-hover:opacity-60 transition-opacity duration-300"
                 src={`/images/men.png`}
               />
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p
+                  style={altLegendStyle}
+                  className="font-Raleway text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mt-20"
+                >
+                  Menswear
+                </p>
+              </div>
             </NavLink>
           </div>
-          <div className="w-full h-100 p-1 md:p-2 hover:opacity-75">
+
+          <div className="relative w-full m-1 md:m-2 group bg-black rounded-lg hover:transition-all duration-1000">
             <NavLink
               to="/products"
               onClick={() => handleClick(navigation[1]._id)}
             >
               <img
                 alt="Women"
-                className="block h-full w-full rounded-lg object-cover object-center hover:opacity-75 transition-opacity duration-300"
+                className="block h-full w-full rounded-lg object-cover object-center group-hover:opacity-75 transition-opacity duration-300"
                 src={`/images/womens.png`}
               />
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p
+                  style={altLegendStyle}
+                  className="font-Raleway text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mt-20"
+                >
+                  Womenswear
+                </p>
+              </div>
             </NavLink>
           </div>
         </div>
         <div className="flex w-1/2 flex-wrap">
-          <div className="w-full p-1 md:p-2 hover:opacity-75">
+          <div className="relative w-full m-1 md:m-2 group bg-black rounded-lg hover:transition-all duration-1000">
             <NavLink
               to="/products"
               onClick={() => handleClick(navigation[3]._id)}
             >
               <img
                 alt="Jackets"
-                className="block h-full w-full rounded-lg object-cover object-center hover:opacity-75 transition-opacity duration-300"
+                className="block h-full w-full rounded-lg object-cover object-center group-hover:opacity-75 transition-opacity duration-300"
                 src={`/images/jackets.png`}
               />
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p
+                  style={altLegendStyle}
+                  className="font-Raleway text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mt-20"
+                >
+                  Jackets
+                </p>
+              </div>
             </NavLink>
           </div>
-          <div className="w-1/2 p-1 md:p-2 hover:opacity-75">
-            <NavLink
-              to="/products"
-              onClick={() => handleClick(navigation[2]._id)}
-              className="relative block h-full w-full rounded-lg overflow-hidden hover:opacity-75 transition-opacity duration-300"
-            >
-              <img
-                alt="Hats"
-                className="block h-full w-full rounded-lg object-cover object-center "
-                src={`/images/hats.png`}
-              />
-            </NavLink>
-          </div>
-          <div className="w-1/2 p-1 md:p-2 hover:opacity-75">
-            <NavLink
-              to="/products"
-              onClick={() => handleClick(navigation[4]._id)}
-            >
-              <img
-                alt="Sneakers"
-                className="block h-full w-full rounded-lg object-cover object-center hover:opacity-75 transition-opacity duration-300"
-                src={`/images/sneakers.png`}
-              />
-            </NavLink>
+          <div className="flex w-full">
+            <div className="relative w-1/2 m-1 md:m-2 group bg-black rounded-lg hover:transition-all duration-1000">
+              <NavLink
+                to="/products"
+                onClick={() => handleClick(navigation[2]._id)}
+              >
+                <img
+                  alt="Hats"
+                  className="block h-full w-full rounded-lg object-cover object-center group-hover:opacity-75 transition-opacity duration-300"
+                  src={`/images/hats.png`}
+                />
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p
+                    style={altLegendStyle}
+                    className="font-Raleway text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mt-20"
+                  >
+                    Hats
+                  </p>
+                </div>
+              </NavLink>
+            </div>
+            <div className="relative w-1/2 m-1 md:m-2 group bg-black rounded-lg hover:transition-all duration-1000">
+              <NavLink
+                to="/products"
+                onClick={() => handleClick(navigation[4]._id)}
+              >
+                <img
+                  alt="Sneakers"
+                  className="block h-full w-full rounded-lg object-cover object-center group-hover:opacity-75 transition-opacity duration-300"
+                  src={`/images/sneakers.png`}
+                />
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p
+                    style={altLegendStyle}
+                    className="font-Raleway text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mt-20"
+                  >
+                    Sneakers
+                  </p>
+                </div>
+              </NavLink>
+            </div>
           </div>
         </div>
       </div>
