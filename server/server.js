@@ -26,6 +26,9 @@ async function startServer() {
   // Open channel for JSON to be sent from client
   app.use(express.json());
 
+  // Serve up static assets
+  app.use('/images', express.static(path.join(__dirname, '../client/public/images')));
+
   // Share dist folder files when in production only
   if (is_prod) {
     app.use(express.static(path.join(__dirname, "../client/dist")));

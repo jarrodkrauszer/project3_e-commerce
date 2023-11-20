@@ -1,5 +1,5 @@
 const { User, Product, Category, Order } = require("../models");
-const { signToken, AuthenticationError } = require("../utils/auth");
+const { AuthenticationError } = require("../auth/authError");
 const stripe = require("stripe")(
   "pk_test_51KS4c3LP4bQ57Nn2yNejMZC0kTuxw2KBt3ElfwJPtLUBAIlcKZGzmRujrAZoaqHHMS064NNvU3NjnLkQkuPFfBtl00uX3pHOlG"
 );
