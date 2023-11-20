@@ -44,7 +44,7 @@ function Category() {
     <div className="container mx-auto px-5 py-2 lg:px-32 lg:pt-24">
       <div className="-m-1 flex flex-wrap md:-m-2">
         <div className="flex w-1/2 flex-wrap">
-          <div className="w-full p-1 md:p-2">
+          <div className="w-full p-1 md:p-2 hover:opacity-75">
             <NavLink
               to="/products"
               onClick={() => handleClick(navigation[0]._id)}
@@ -56,7 +56,7 @@ function Category() {
               />
             </NavLink>
           </div>
-          <div className="w-full h-100 p-1 md:p-2">
+          <div className="w-full h-100 p-1 md:p-2 hover:opacity-75">
             <NavLink
               to="/products"
               onClick={() => handleClick(navigation[1]._id)}
@@ -70,7 +70,7 @@ function Category() {
           </div>
         </div>
         <div className="flex w-1/2 flex-wrap">
-          <div className="w-full p-1 md:p-2">
+          <div className="w-full p-1 md:p-2 hover:opacity-75">
             <NavLink
               to="/products"
               onClick={() => handleClick(navigation[3]._id)}
@@ -82,7 +82,7 @@ function Category() {
               />
             </NavLink>
           </div>
-          <div className="w-1/2 p-1 md:p-2">
+          <div className="w-1/2 p-1 md:p-2 hover:opacity-75">
             <NavLink
               to="/products"
               onClick={() => handleClick(navigation[2]._id)}
@@ -94,7 +94,7 @@ function Category() {
               />
             </NavLink>
           </div>
-          <div className="w-1/2 p-1 md:p-2">
+          <div className="w-1/2 p-1 md:p-2 hover:opacity-75">
             <NavLink
               to="/products"
               onClick={() => handleClick(navigation[4]._id)}
@@ -109,64 +109,6 @@ function Category() {
         </div>
       </div>
     </div>
-    // <div className="flex flex-col items-center py-3 bg-white category-cont">
-    //   <div className="flex-container category-container ">
-    //     <div className="flex-container w-80">
-    //       <NavLink
-    //         to="/products"
-    //         onClick={() => handleClick(navigation[2]._id)}
-    //       >
-    //         <img
-    //           src="https://i.ibb.co/ZYW3VTp/brown-brim.png"
-    //           alt="Hat"
-    //           className="object-fill w-full h-full px-1 transition duration-300 ease-in-out hover:brightness-75 responsive-image"
-    //         />
-    //       </NavLink>
-    //       <NavLink
-    //         to="/products"
-    //         onClick={() => handleClick(navigation[3]._id)}
-    //       >
-    //         <img
-    //           src="https://i.ibb.co/s96FpdP/brown-shearling.png"
-    //           alt="Jacket"
-    //           className="object-fill w-full h-10 mt-1.5 px-1 transition duration-300 ease-in-out hover:brightness-75 responsive-image"
-    //         />
-    //       </NavLink>
-    //     </div>
-
-    //     <NavLink to="/products" onClick={() => handleClick(navigation[0]._id)}>
-    //       <div className="flex-container w-full h-full">
-    //         <img
-    //           src={Men}
-    //           alt="Men"
-    //           className="object-fill w-full h-full px-1 w-full transition duration-300 ease-in-out hover:brightness-75 responsive-image"
-    //         />
-    //       </div>
-    //     </NavLink>
-    //   </div>
-
-    //   <div className="flex-container category-container ">
-    //     <NavLink to="/products" onClick={() => handleClick(navigation[1]._id)}>
-    //       <div className="flex-container w-full h-full">
-    //         <img
-    //           src={Women}
-    //           alt="Women"
-    //           className="object-fill w-full h-full px-1 transition duration-300 ease-in-out hover:brightness-75 responsive-image"
-    //         />
-    //       </div>
-    //     </NavLink>
-
-    //     <NavLink to="/products" onClick={() => handleClick(navigation[4]._id)}>
-    //       <div className="flex-container">
-    //         <img
-    //           src={Sneakers}
-    //           className="object-fill w-full h-full px-1 transition duration-300 ease-in-out hover:brightness-75 responsive-image"
-    //           alt="Sneakers"
-    //         />
-    //       </div>
-    //     </NavLink>
-    //   </div>
-    // </div>
   );
 }
 
