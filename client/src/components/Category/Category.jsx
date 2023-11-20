@@ -3,23 +3,13 @@ import { useQuery } from "@apollo/client";
 import { gql } from "@apollo/client";
 import { NavLink } from "react-router-dom";
 import { useStoreContext } from "../../utils/store";
-
-import Hat from "../../assets/hats.png";
-import Jacket from "../../assets/jackets.png";
-import Men from "../../../public/images/men.png";
-import Women from "../../assets/womens.png";
-import Sneakers from "../../assets/sneakers.png";
-
 import {
   QUERY_PRODUCTS,
   QUERY_ALL_PRODUCTS,
   QUERY_CATEGORIES,
 } from "../../utils/queries";
-
 import { UPDATE_CURRENT_CATEGORY } from "../../utils/actions";
-
 import "./category.scss";
-
 function Category() {
   const [category, setCategory] = useState(null);
   const { data: categoryData } = useQuery(QUERY_CATEGORIES);
@@ -28,10 +18,8 @@ function Category() {
   });
   const navigation = categoryData?.categories || [];
   const [state, dispatch] = useStoreContext();
-
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
-
   const handleClick = (id) => {
     // console.error(navigation[0]);
     dispatch({
@@ -39,7 +27,6 @@ function Category() {
       currentCategory: id,
     });
   };
-
   return (
     <div className="container mx-auto px-5 py-2 lg:px-32 lg:pt-24">
       <div className="-m-1 flex flex-wrap md:-m-2">
@@ -52,7 +39,7 @@ function Category() {
               <img
                 alt={"Mens Clothing"}
                 className="block h-full w-full rounded-lg object-cover object-center hover:opacity-75 transition-opacity duration-300"
-                src={Men}
+                src={`/images/men.png`}
               />
             </NavLink>
           </div>
@@ -64,7 +51,7 @@ function Category() {
               <img
                 alt="Women"
                 className="block h-full w-full rounded-lg object-cover object-center hover:opacity-75 transition-opacity duration-300"
-                src={Women}
+                src={`/images/womens.png`}
               />
             </NavLink>
           </div>
@@ -78,7 +65,7 @@ function Category() {
               <img
                 alt="Jackets"
                 className="block h-full w-full rounded-lg object-cover object-center hover:opacity-75 transition-opacity duration-300"
-                src={Jacket}
+                src={`/images/jackets.png`}
               />
             </NavLink>
           </div>
@@ -91,7 +78,7 @@ function Category() {
               <img
                 alt="Hats"
                 className="block h-full w-full rounded-lg object-cover object-center "
-                src={Hat}
+                src={`/images/hats.png`}
               />
             </NavLink>
           </div>
@@ -103,7 +90,7 @@ function Category() {
               <img
                 alt="Sneakers"
                 className="block h-full w-full rounded-lg object-cover object-center hover:opacity-75 transition-opacity duration-300"
-                src={Sneakers}
+                src={`/images/sneakers.png`}
               />
             </NavLink>
           </div>
@@ -112,5 +99,4 @@ function Category() {
     </div>
   );
 }
-
 export default Category;
