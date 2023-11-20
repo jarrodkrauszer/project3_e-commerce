@@ -1,14 +1,72 @@
-import { useState } from "react";
-import { StarIcon } from "@heroicons/react/20/solid";
-import { RadioGroup } from "@headlessui/react";
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
 
-const reviews = { href: "#", average: 4, totalCount: 117 };
+import Cart from '../components/Cart';
+import { useStoreContext } from '../../utils/store';
+import {
+  REMOVE_FROM_CART,
+  UPDATE_CART_QUANTITY,
+  ADD_TO_CART,
+  UPDATE_PRODUCTS,
+} from '../../utils/actions';
+import { QUERY_PRODUCTS } from '../../utils/queries';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 function ProductView() {
+  const [state, dispatch] = useStoreContext();
+  const { id } = useParams();
+
+  const [currentProduct, setCurrentProduct] = useState({});
+
+  const { loading, data } = useQuery(QUERY_PRODUCTS);
+
+  const { products, cart } = state;
+
+  useEffect(() => {
+    // already in global store
+    if (products.length) {
+      setCurrentProduct(products.find((product) => product._id === id));
+    }
+    // retrieved from server
+    else if (data) {
+      dispatch({
+        type: UPDATE_PRODUCTS,
+        products: data.products,
+      });
+
+      data.products.forEach((product) => {
+        idbPromise('products', 'put', product);
+      });
+    }
+  }, [products, data, loading, dispatch, id]);
+
+  const addToCart = () => {
+    const itemInCart = cart.find((cartItem) => cartItem._id === id);
+    if (itemInCart) {
+      dispatch({
+        type: UPDATE_CART_QUANTITY,
+        _id: id,
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+      });
+    } else {
+      dispatch({
+        type: ADD_TO_CART,
+        product: { ...currentProduct, purchaseQuantity: 1 },
+      });
+    }
+  };
+
+  const removeFromCart = () => {
+    dispatch({
+      type: REMOVE_FROM_CART,
+      _id: currentProduct._id,
+    });
+  };
+
   return (
     <div className="bg-white">
       <div className="pt-6">
