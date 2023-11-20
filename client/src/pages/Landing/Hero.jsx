@@ -2,11 +2,9 @@ import { useStoreContext } from '../../utils/store'
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 
 import { Carousel } from 'react-responsive-carousel';
-import stripedSweater from "../../assets/white-background.png";
-import Jacket from "../../assets/jackets.png"
-import Beanie from "../../assets/black-background.jpg"
-import Shearling from "../../assets/brown-shearling.png"
-import pinkShirt from "../../assets/white-background2.jpg"
+import whiteBackground from "../../assets/white-background.png";
+import blackBackground from "../../assets/black-background.jpg"
+import whiteBackground2 from "../../assets/white-background2.jpg"
 
 function Hero() {
   
@@ -49,15 +47,15 @@ function Hero() {
           <p className="legend" style={legendStyle}>Legend 2</p>
         </div> */}
         <div>
-            <img src={stripedSweater} style={imageSize} />  
+            <img src={whiteBackground} style={imageSize} />  
           <p className="legend" style={legendStyle}>70% Sale on all Menswear</p>
         </div>
         <div>
-          <img src={Beanie} style={imageSize} />
+          <img src={blackBackground} style={imageSize} />
           <p className="legend" style={altLegendStyle}>50% Sale on all Shoes</p>
         </div>
         <div>
-           <img src={pinkShirt} style={imageSize} /> 
+           <img src={whiteBackground2} style={imageSize} /> 
           <p className="legend" style={legendStyle}>20% off all Hats</p>
         </div>
       </Carousel>
