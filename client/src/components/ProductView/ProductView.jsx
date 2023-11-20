@@ -1,13 +1,16 @@
+
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 // import Cart from "../components/Cart";
 import { useStoreContext } from "../../utils/store";
+
 import {
   REMOVE_FROM_CART,
   UPDATE_CART_QUANTITY,
   ADD_TO_CART,
   UPDATE_PRODUCTS,
+
 } from "../../utils/actions";
 import { QUERY_PRODUCTS } from "../../utils/queries";
 function classNames(...classes) {
@@ -20,6 +23,7 @@ function ProductView() {
   const [currentProduct, setCurrentProduct] = useState({});
   const { loading, data } = useQuery(QUERY_PRODUCTS);
   const { products, cart } = state;
+
   useEffect(() => {
     // already in global store
     if (products.length) {
@@ -31,11 +35,13 @@ function ProductView() {
         type: UPDATE_PRODUCTS,
         products: data.products,
       });
+
       data.products.forEach((product) => {
         idbPromise("products", "put", product);
       });
     }
   }, [products, data, loading, dispatch, id]);
+
   const addToCart = () => {
     const itemInCart = cart.find((cartItem) => cartItem._id === id);
     if (itemInCart) {
@@ -51,12 +57,14 @@ function ProductView() {
       });
     }
   };
+
   const removeFromCart = () => {
     dispatch({
       type: REMOVE_FROM_CART,
       _id: currentProduct._id,
     });
   };
+
   return (
     <div className="bg-white">
       <h1>Details</h1>
