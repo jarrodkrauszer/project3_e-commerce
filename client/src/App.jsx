@@ -40,7 +40,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/productview" element={<ProductView />} />
+        <Route path="/products/:id" element={<ProductView />} />
 
         <Route path="/register" element={<Auth isLogin={false} />} />
         <Route path="/login" element={<Auth isLogin={true} />} />
