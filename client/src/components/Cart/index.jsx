@@ -34,6 +34,12 @@ const Cart = () => {
     }
   }, [state.cart.length, dispatch]);
 
+  function addCartToStorage(cart) {
+
+    // Convert to JSON string and set to local storage
+
+  }
+
   function toggleCart() {
     dispatch({ type: TOGGLE_CART });
   }
@@ -47,6 +53,9 @@ const Cart = () => {
   }
 
   function submitCheckout() {
+
+    localStorage.setItem('cart', JSON.stringify(state.cart));
+
     getCheckout({
       variables: {
         products: [...state.cart],
