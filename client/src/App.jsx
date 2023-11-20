@@ -8,12 +8,13 @@ import Header from "./components/Header";
 import Auth from "./pages/Auth";
 import Landing from "./pages/Landing";
 import Products from "./pages/Products";
+import ProductViews from "./pages/ProductView";
 import OrderProcessed from "./pages/OrderProcessed";
 
 import { useStoreContext } from "./utils/store";
 import OrderHistory from "./pages/OrderHistory";
 
-import { QUERY_AUTHENTICATE } from '../src/utils/queries'
+import { QUERY_AUTHENTICATE } from "../src/utils/queries";
 
 function App() {
   const [state, dispatch] = useStoreContext();
@@ -40,6 +41,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/productsView" element={<ProductViews />} />
+
         <Route path="/register" element={<Auth isLogin={false} />} />
         <Route path="/login" element={<Auth isLogin={true} />} />
         <Route path="/order-history" element={<OrderHistory />} />

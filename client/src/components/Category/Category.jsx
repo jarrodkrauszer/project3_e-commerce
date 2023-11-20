@@ -51,7 +51,7 @@ function Category() {
             >
               <img
                 alt={"Mens Clothing"}
-                className="block h-full w-full rounded-lg object-cover object-center"
+                className="block h-full w-full rounded-lg object-cover object-center hover:opacity-75 transition-opacity duration-300"
                 src={Men}
               />
             </NavLink>
@@ -63,7 +63,7 @@ function Category() {
             >
               <img
                 alt="Women"
-                className="block h-full w-full rounded-lg object-cover object-center"
+                className="block h-full w-full rounded-lg object-cover object-center hover:opacity-75 transition-opacity duration-300"
                 src={Women}
               />
             </NavLink>
@@ -77,7 +77,7 @@ function Category() {
             >
               <img
                 alt="Jackets"
-                className="block h-full w-full rounded-lg object-cover object-center"
+                className="block h-full w-full rounded-lg object-cover object-center hover:opacity-75 transition-opacity duration-300"
                 src={Jacket}
               />
             </NavLink>
@@ -86,12 +86,18 @@ function Category() {
             <NavLink
               to="/products"
               onClick={() => handleClick(navigation[2]._id)}
+              className="relative block h-full w-full rounded-lg overflow-hidden hover:opacity-75 transition-opacity duration-300"
             >
               <img
                 alt="Hats"
-                className="block h-full w-full rounded-lg object-cover object-center"
+                className="block h-full w-full rounded-lg object-cover object-center "
                 src={Hat}
               />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <p className="category-text text-white  font-bold bg-black rounded-lg p-3">
+                  Hats
+                </p>
+              </div>
             </NavLink>
           </div>
           <div className="w-1/2 p-1 md:p-2 hover:opacity-75">
@@ -101,7 +107,7 @@ function Category() {
             >
               <img
                 alt="Sneakers"
-                className="block h-full w-full rounded-lg object-cover object-center"
+                className="block h-full w-full rounded-lg object-cover object-center hover:opacity-75 transition-opacity duration-300"
                 src={Sneakers}
               />
             </NavLink>
