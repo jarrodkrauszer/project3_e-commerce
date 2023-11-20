@@ -10,6 +10,7 @@ import Landing from "./pages/Landing";
 import Products from "./pages/Products";
 import ProductViews from "./pages/ProductView";
 import OrderProcessed from "./pages/OrderProcessed";
+import ProductViews from "./pages/ProductView";
 
 import { useStoreContext } from "./utils/store";
 import OrderHistory from "./pages/OrderHistory";
@@ -41,7 +42,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/productsView" element={<ProductViews />} />
+        <Route path="/productViews" element={<ProductViews />} />
 
         <Route path="/register" element={<Auth isLogin={false} />} />
         <Route path="/login" element={<Auth isLogin={true} />} />
