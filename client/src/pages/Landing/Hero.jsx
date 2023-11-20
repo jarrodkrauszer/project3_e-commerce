@@ -56,14 +56,7 @@ function Hero() {
     
   
       <Carousel autoPlay={true} infiniteLoop={true} showThumbs={false} showStatus={false}>
-        {/* <div>
-          <img src={Jacket} style={imageSize} />
-          <p className="legend" style={legendStyle}>70% Off All Jackets!</p>
-        </div> */}
-        {/* <div>
-          <img src={pinkShirt} style={imageSize} />
-          <p className="legend" style={legendStyle}>Legend 2</p>
-        </div> */}
+       
         <div>
             <img src={whiteBackground} style={imageSize} />  
           <p className="legend" style={legendStyle}>70% Sale on all Menswear</p>
