@@ -71,7 +71,7 @@ const typeDefs = gql`
     createCategory(name: String!): Category!
     updateCategory(id: ID!, name: String!): Category!
     deleteCategory(id: ID!): Category!
-    createOrder(products: [ID!]!): Order!
+    addOrder(products: [ID]!): Order!
     updateOrder(id: ID!, products: [ID!]!): Order!
     deleteOrder(id: ID!): Order!
     register(

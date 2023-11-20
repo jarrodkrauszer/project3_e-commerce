@@ -126,7 +126,7 @@ const resolvers = {
         throw new Error(message);
       }
     },
-    createOrder: async (_, { products }, context) => {
+    addOrder: async (_, { products }, context) => {
       if (context.user) {
         const order = new Order({ products });
 
