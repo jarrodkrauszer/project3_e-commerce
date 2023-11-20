@@ -1,8 +1,6 @@
 const { User, Product, Category, Order } = require("../models");
 const { AuthenticationError } = require("../auth/authError");
-const stripe = require("stripe")(
-  "pk_test_51KS4c3LP4bQ57Nn2yNejMZC0kTuxw2KBt3ElfwJPtLUBAIlcKZGzmRujrAZoaqHHMS064NNvU3NjnLkQkuPFfBtl00uX3pHOlG"
-);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const { createToken } = require("../auth");
 
 const resolvers = {
@@ -29,8 +27,8 @@ const resolvers = {
       return await Product.find(params).populate("category");
     },
     checkout: async (parent, args, context) => {
-      const url = new URL(context.headers.referer).origin;
-      console.log(context.header);
+      const url = context.req.headers.origin;
+      // console.log(context.header);
 
       await Order.create({ products: args.products.map(({ _id }) => _id) });
       const line_items = [];
@@ -51,7 +49,7 @@ const resolvers = {
       }
 
       const session = await stripe.checkout.sessions.create({
-        payment_method_types: ["card"],
+        // payment_method_types: ["card"],
         line_items,
         mode: "payment",
         success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
