@@ -6,7 +6,7 @@ import { useStoreContext } from "../../utils/store";
 
 import Hat from "../../assets/hats.png";
 import Jacket from "../../assets/jackets.png";
-import Men from "../../assets/men.png";
+import Men from "../../../public/images/men.png";
 import Women from "../../assets/womens.png";
 import Sneakers from "../../assets/sneakers.png";
 

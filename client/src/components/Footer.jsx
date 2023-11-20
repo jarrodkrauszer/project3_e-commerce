@@ -3,13 +3,9 @@ import Logo from "../assets/logo.png";
 function Footer() {
   return (
     <footer className="w-full bg-black p-8 mt-14">
-      <div className="flex items-center justify-center ">
-        <img src={Logo} alt="logo-ct" className="w-10 justify-center" />
-      </div>
-      <hr className="my-8 border-blue-gray-50" />
-      <div className="text-white flex flex-col md:flex-row justify-between items-start mx-auto">
+      <div className="text-white flex flex-col md:flex-row justify-center md:justify-between items-center mx-auto">
         {/* Contact Information */}
-        <div className="mb-4 md:mb-0">
+        <div className="mb-4 md:mb-0 text-center md:text-left">
           <h3 className="underline">Contact Us:</h3>
           <ul>
             <li>Phone: (555)-657-8965</li>
@@ -18,8 +14,13 @@ function Footer() {
           </ul>
         </div>
 
+        {/* Centered Logo */}
+        <div className="flex items-center justify-center md:mr-40">
+          <img src={Logo} alt="logo-ct" className="w-10" />
+        </div>
+
         {/* Copyright */}
-        <div className="mt-20">
+        <div className="mt-20 text-center md:text-left">
           <p className="text-white italic font-normal mt-4 md:mt-0">
             &copy; 2023 Urban Vogue
           </p>
