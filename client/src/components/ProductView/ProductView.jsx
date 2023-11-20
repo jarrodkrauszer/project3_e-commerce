@@ -8,7 +8,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function ProductView() {
+function ProductView() {
   return (
     <div className="bg-white">
       <div className="pt-6">
@@ -116,3 +116,5 @@ export default function ProductView() {
     </div>
   );
 }
+
+export default ProductView
