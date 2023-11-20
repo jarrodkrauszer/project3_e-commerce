@@ -1,38 +1,32 @@
 import { Link } from "react-router-dom";
 import { useStoreContext } from "../../utils/store";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
-import { pluralize } from "../../utils/helpers"
+import { pluralize } from "../../utils/helpers";
 
-import './product.scss'
+import "./product.scss";
 
 function ProductItem(item) {
   const [state, dispatch] = useStoreContext();
 
-  const {
-    imageUrl,
-    name,
-    _id,
-    price,
-    quantity
-  } = item;
+  const { imageUrl, name, _id, price, quantity } = item;
 
   const addToCart = () => {
-    console.log('Add to cart!')
-    console.log(state.cart)
-    const itemInCart = state.cart.find((cartItem) => cartItem._id === _id)
+    console.log("Add to cart!");
+    console.log(state.cart);
+    const itemInCart = state.cart.find((cartItem) => cartItem._id === _id);
     if (itemInCart) {
       dispatch({
         type: UPDATE_CART_QUANTITY,
         _id: _id,
-        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
+        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
       });
     } else {
       dispatch({
         type: ADD_TO_CART,
-        product: { ...item, purchaseQuantity: 1 }
+        product: { ...item, purchaseQuantity: 1 },
       });
     }
-  }
+  };
 
   return (
     <>
@@ -49,25 +43,28 @@ function ProductItem(item) {
 
             <div className="mt-4 flex justify-between">
               <div>
-                <h3 className="text-md font-medium text-gray-700">
-                  {/* <a href={product.href}> */}
-                  {/* <span aria-hidden="true" className="absolute inset-0" /> */}
-                  {name}
-                  {/* </a> */}
-                </h3>
+                <Link to={`/product/${_id}`}>
+                  <h3 className="text-md font-medium text-gray-700">
+                    {/* <a href={product.href}> */}
+                    {/* <span aria-hidden="true" className="absolute inset-0" /> */}
+                    {name}
+                    {/* </a> */}
+                  </h3>
+                </Link>
               </div>
               <p className="text-md font-medium text-gray-900">${price}</p>
-
             </div>
             <div className="quantity">
-              <p className="text-md font-medium text-gray-900">{quantity} {pluralize("item", quantity)} in stock</p>
+              <p className="text-md font-medium text-gray-900">
+                {quantity} {pluralize("item", quantity)} in stock
+              </p>
             </div>
-
           </div>
-
         </div>
         <div className="add-to-cart-container">
-          <button className="add-to-cart-btn" onClick={addToCart}>Add to cart</button>
+          <button className="add-to-cart-btn" onClick={addToCart}>
+            Add to cart
+          </button>
         </div>
       </div>
     </>
