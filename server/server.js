@@ -29,10 +29,6 @@ async function startServer() {
   // Serve up static assets
   app.use('/images', express.static(path.join(__dirname, '../client/public/images')));
 
-  // Share dist folder files when in production only
-  if (is_prod) {
-    app.use(express.static(path.join(__dirname, "../client/dist")));
-  }
 
   // Open cookie middleware channel so we can view cookies on the request object
   app.use(cookieParser());
@@ -46,6 +42,8 @@ async function startServer() {
 
   // Trigger React router to handle all routing outside of our auth routes
   if (is_prod) {
+    app.use(express.static(path.join(__dirname, "../client/dist")));
+
     app.get("*", (req, res) => {
       res.sendFile(path.join(__dirname, "../client/dist/index.html"));
     });
