@@ -43,19 +43,15 @@ function Hero() {
 
   return (
     <div>
-      <h1 style={titleStyle}>Test</h1>
-      <img
-        style={{ filter: "invert(1)" }}
-        className="mx-auto h-15 w-auto invert-colors"
-        src={Logo}
-      />
 
-      <Carousel
-        autoPlay={true}
-        infiniteLoop={true}
-        showThumbs={false}
-        showStatus={false}
-      >
+     <img
+     style={{filter:'invert(1)'}}
+     className="mx-auto h-15 w-auto invert-colors"
+     src={Logo}/>
+     <h1 style={titleStyle}>UrbanVogue</h1>
+  
+      <Carousel autoPlay={true} infiniteLoop={true} showThumbs={false} showStatus={false}>
+
         <div>
           <img src={whiteBackground} style={imageSize} />
           <p className="legend" style={legendStyle}>
