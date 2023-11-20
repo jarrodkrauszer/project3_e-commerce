@@ -7,7 +7,7 @@ import Header from "./components/Header";
 
 import Auth from "./pages/Auth";
 import Landing from "./pages/Landing";
-import Product from "./pages/Product";
+import Product from "./pages/Products";
 import ProductViews from "./pages/ProductV";
 
 import { useStoreContext } from "./utils/store";
