@@ -13,14 +13,14 @@ function OrderHistory() {
         {" "}
         {/* Remove the container class */}
         {user ? (
-          <div className="flex justify-center">
+          <div className="flex-col justify-center">
             {" "}
             {/* Add flex and justify-center classes */}
             <h2 className="text-center font-bold text-4xl py-8">
               {user.firstName}'s Order History
             </h2>
             {user.orders.map((order) => (
-              <div key={order._id} className="my-2">
+              <div key={order._id} className="my-2 mx-10">
                 <h3>
                   {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}
                 </h3>
