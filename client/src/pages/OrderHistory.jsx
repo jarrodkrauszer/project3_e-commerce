@@ -19,9 +19,9 @@ function OrderHistory() {
           {user.orders.map((order) => (
             <div
               key={order._id}
-              className="my-2 mx-8 inline-block w-auto border border-black p-3"
+              className="my-2 mx-8 inline-block w-auto border-2 rounded-lg border-black bg-gray-100 p-3"
             >
-              <h3 className="text-center text-bold">
+              <h3 className="text-center font-bold text-bold">
                 {new Date(parseInt(order.purchaseDate)).toDateString()}
               </h3>
               <div className="flex flex-wrap">

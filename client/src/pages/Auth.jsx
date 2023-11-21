@@ -1,84 +1,91 @@
-import { NavLink, useNavigate } from 'react-router-dom'
-import { useMutation, gql } from '@apollo/client'
-import { UPDATE_USER } from '../utils/actions';
-import { REGISTER, LOGIN } from '../utils/mutations';
-import React from 'react'
-import { useState } from 'react'
+import { NavLink, useNavigate } from "react-router-dom";
+import { useMutation, gql } from "@apollo/client";
+import { UPDATE_USER } from "../utils/actions";
+import { REGISTER, LOGIN } from "../utils/mutations";
+import React from "react";
+import { useState } from "react";
 
-import { useStoreContext } from '../utils/store'
+import { useStoreContext } from "../utils/store";
 
 const initialFormData = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  password: ''
-}
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+};
 
 function Auth({ isLogin }) {
   const [, dispatch] = useStoreContext();
-  const [formData, setFormData] = useState(initialFormData)
-  const navigate = useNavigate()
-  const [errorMessage, setErrorMessage] = useState('')
-
+  const [formData, setFormData] = useState(initialFormData);
+  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
 
   const [authenticateUser] = useMutation(isLogin ? LOGIN : REGISTER, {
-    variables: formData
-  })
+    variables: formData,
+  });
 
   const handleInputChange = (e) => {
-
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     try {
-      const resolverName = isLogin ? 'login' : 'register'
+      const resolverName = isLogin ? "login" : "register";
 
-      const { data: userData } = await authenticateUser()
+      const { data: userData } = await authenticateUser();
 
-      setFormData({ ...initialFormData })
+      setFormData({ ...initialFormData });
 
       dispatch({
         type: UPDATE_USER,
-        user: userData[resolverName]
-      })
+        user: userData[resolverName],
+      });
 
-      setErrorMessage('')
-      navigate('/')
-
+      setErrorMessage("");
+      navigate("/");
     } catch (err) {
-      console.log(err.message)
-      setErrorMessage(err.message)
+      console.log(err.message);
+      setErrorMessage(err.message);
     }
-  }
+  };
 
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm" >
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
-            style={{ filter: 'invert(1)' }}
+            style={{ filter: "invert(1)" }}
             className="mx-auto h-10 w-auto invert-colors"
-            src={'/images/logo.png'}
+            src={"/images/logo.png"}
             alt="Your Company"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            {isLogin ? 'Sign in to your account' : 'Register'}
+            {isLogin ? "Sign in to your account" : "Register"}
           </h2>
-          {errorMessage && <p className="text-red-500 text-center mt-1">{errorMessage}</p>}
+          {errorMessage && (
+            <p className="text-red-500 text-center mt-1">{errorMessage}</p>
+          )}
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form onSubmit={handleSubmit} className="space-y-6" action="#" method="POST">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-6"
+            action="#"
+            method="POST"
+          >
             {!isLogin ? (
               <>
                 <div>
-                  <label htmlFor="firstName" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label
+                    htmlFor="firstName"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
                     First Name
                   </label>
                   <div className="mt-2">
@@ -95,7 +102,10 @@ function Auth({ isLogin }) {
                 </div>
 
                 <div>
-                  <label htmlFor="lastName" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label
+                    htmlFor="lastName"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
                     Last Name
                   </label>
                   <div className="mt-2">
@@ -112,12 +122,14 @@ function Auth({ isLogin }) {
                 </div>
               </>
             ) : (
-              <>
-              </>
+              <></>
             )}
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 Email address
               </label>
               <div className="mt-2">
@@ -136,11 +148,17 @@ function Auth({ isLogin }) {
 
             <div>
               <div className="flex items-center justify-between">
-                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
                   Password
                 </label>
                 <div className="text-sm">
-                  <a href="#" className="font-semibold text-black hover:text-gray-500">
+                  <a
+                    href="#"
+                    className="font-semibold text-black hover:text-gray-500"
+                  >
                     Forgot password?
                   </a>
                 </div>
@@ -162,7 +180,7 @@ function Auth({ isLogin }) {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex w-full m-0 justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Sign in
               </button>
@@ -171,7 +189,7 @@ function Auth({ isLogin }) {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Auth
+export default Auth;

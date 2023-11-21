@@ -30,9 +30,8 @@ function Category() {
 
   const altLegendStyle = {
     color: "white",
-    fontSize: "48px",
+
     fontFamily: "Raleway",
-    fontWeight: "bold",
   };
 
   return (
@@ -136,7 +135,7 @@ function Category() {
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <p
                     style={altLegendStyle}
-                    className="font-Raleway text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mt-20"
+                    className="font-Raleway text-base sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mt-20"
                   >
                     Sneakers
                   </p>

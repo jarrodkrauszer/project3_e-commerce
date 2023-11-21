@@ -116,14 +116,13 @@ function Header() {
                     <p className="welcome mr-3">
                       Welcome, {state.user.firstName}
                     </p>
-                    {state.user.orders || (
-                      <NavLink
-                        to="/order-history"
-                        className="hidden md:block text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                      >
-                        Order History
-                      </NavLink>
-                    )}
+
+                    <NavLink
+                      to="/order-history"
+                      className="hidden md:block text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                    >
+                      Order History
+                    </NavLink>
 
                     <NavLink
                       to="/logout"
