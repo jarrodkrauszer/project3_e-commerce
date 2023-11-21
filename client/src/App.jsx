@@ -37,19 +37,21 @@ function App() {
   ) : (
     <>
       <Header />
+      <main>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:id" element={<ProductView />} />
 
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/products/:id" element={<ProductView />} />
+          <Route path="/register" element={<Auth isLogin={false} />} />
+          <Route path="/login" element={<Auth isLogin={true} />} />
+          <Route path="/order-history" element={<OrderHistory />} />
+          <Route path="/success" element={<OrderProcessed />} />
 
-        <Route path="/register" element={<Auth isLogin={false} />} />
-        <Route path="/login" element={<Auth isLogin={true} />} />
-        <Route path="/order-history" element={<OrderHistory />} />
-        <Route path="/success" element={<OrderProcessed />} />
+          {/* <Route path="*" element={<NotFound />} /> */}
+        </Routes>
+      </main>
 
-        {/* <Route path="*" element={<NotFound />} /> */}
-      </Routes>
       <Footer />
     </>
   );

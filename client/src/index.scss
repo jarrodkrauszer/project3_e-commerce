@@ -4,6 +4,15 @@ body,
   height: 100%;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
 .flex-row-wrap {
   display: flex;
   flex-wrap: wrap;
