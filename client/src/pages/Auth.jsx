@@ -139,11 +139,6 @@ function Auth({ isLogin }) {
                 <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                   Password
                 </label>
-                <div className="text-sm">
-                  <a href="#" className="font-semibold text-black hover:text-gray-500">
-                    Forgot password?
-                  </a>
-                </div>
               </div>
               <div className="mt-2">
                 <input
