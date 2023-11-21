@@ -25,7 +25,7 @@ function OrderHistory() {
                 className="my-2 mx-8 inline-block w-auto border border-black p-3"
               >
                 <h3 className="text-center text-bold">
-                  {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}
+                  {new Date(parseInt(order.purchaseDate)).toDateString()}
                 </h3>
                 <div className="flex flex-wrap">
                   {order.products.map(
