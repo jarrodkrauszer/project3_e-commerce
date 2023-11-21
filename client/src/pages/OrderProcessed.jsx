@@ -1,16 +1,21 @@
 import { useEffect } from 'react';
 import { useMutation } from '@apollo/client';
-import { ADD_ORDER } from '../utils/mutations';
+import { ADD_ORDER, UPDATE_PRODUCT } from '../utils/mutations';
 import { useStoreContext } from '../utils/store'
 
 function OrderProcessed() {
   // const [state, dispatch] = useStoreContext();
   const [addOrder] = useMutation(ADD_ORDER);
+  const [updateProduct] = useMutation(UPDATE_PRODUCT)
 
   useEffect(() => {
     async function saveOrder() {
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      const products = cart.map((item) => item._id)
+      console.log(cart)
+      const products = cart.map((item) => ({
+        id: item._id,
+        purchaseQuantity: item.purchaseQuantity
+      }))
       localStorage.clear()
 
 
@@ -18,9 +23,9 @@ function OrderProcessed() {
         const { data } = await addOrder({ variables: { products } })
       }
 
-      setTimeout(() => {
-        window.location.assign('/');
-      }, 3000);
+      // setTimeout(() => {
+      //   window.location.assign('/');
+      // }, 3000);
     }
 
     saveOrder();
