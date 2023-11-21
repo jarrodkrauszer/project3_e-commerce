@@ -23,9 +23,9 @@ function OrderProcessed() {
         const { data } = await addOrder({ variables: { products } })
       }
 
-      // setTimeout(() => {
-      //   window.location.assign('/');
-      // }, 3000);
+      setTimeout(() => {
+        window.location.assign('/');
+      }, 3000);
     }
 
     saveOrder();
