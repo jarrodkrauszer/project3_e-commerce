@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
@@ -10,14 +9,13 @@ import {
   UPDATE_CART_QUANTITY,
   ADD_TO_CART,
   UPDATE_PRODUCTS,
-
 } from "../../utils/actions";
 import { QUERY_PRODUCTS } from "../../utils/queries";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 function ProductView() {
-  console.log(ProductView)
+  console.log(ProductView);
   const [state, dispatch] = useStoreContext();
   const { id } = useParams();
   const [currentProduct, setCurrentProduct] = useState({});
@@ -34,10 +32,6 @@ function ProductView() {
       dispatch({
         type: UPDATE_PRODUCTS,
         products: data.products,
-      });
-
-      data.products.forEach((product) => {
-        idbPromise("products", "put", product);
       });
     }
   }, [products, data, loading, dispatch, id]);
@@ -76,9 +70,7 @@ function ProductView() {
           >
             <li key={currentProduct._id}>
               <div className="flex items-center">
-                <a
-                  className="mr-2 text-sm font-medium text-gray-900"
-                >
+                <a className="mr-2 text-sm font-medium text-gray-900">
                   {currentProduct.name}
                 </a>
                 <svg
@@ -136,7 +128,9 @@ function ProductView() {
             <div>
               <h3 className="sr-only">Description</h3>
               <div className="space-y-6 mt-10">
-                <p className="text-base text-gray-900">{currentProduct.description}</p>
+                <p className="text-base text-gray-900">
+                  {currentProduct.description}
+                </p>
               </div>
             </div>
             <div className="mt-10">
@@ -154,7 +148,9 @@ function ProductView() {
             <div className="mt-10">
               <h2 className="text-sm font-medium text-gray-900">Details</h2>
               <div className="mt-4 space-y-6">
-                <p className="text-sm text-gray-600">{currentProduct.details}</p>
+                <p className="text-sm text-gray-600">
+                  {currentProduct.details}
+                </p>
               </div>
             </div>
           </div>

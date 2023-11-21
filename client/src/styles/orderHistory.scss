@@ -1,0 +1,50 @@
+.order-history-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.order-history-date {
+  font-size: 1.5;
+}
+
+.order-history-title {
+  font-weight: bold;
+  font-size: 4rem;
+  padding-top: 8rem;
+}
+
+.order-history-orders {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.order-history-order {
+  margin: 1rem;
+}
+
+.order-history-date {
+  font-size: 1.5rem;
+}
+
+.order-history-product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+.order-history-product img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+}
+
+.order-history-product-name {
+  margin-top: 0.5rem;
+}
+
+.order-history-product-price {
+  margin-top: 0.5rem;
+}

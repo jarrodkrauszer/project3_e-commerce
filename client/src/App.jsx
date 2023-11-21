@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 import Auth from "./pages/Auth";
 import Landing from "./pages/Landing";
 import Products from "./pages/Products";
-import ProductView from "./pages/ProductView";
+import ProductView from "./pages/ProductViewList";
 import OrderProcessed from "./pages/OrderProcessed";
 
 import { useStoreContext } from "./utils/store";
