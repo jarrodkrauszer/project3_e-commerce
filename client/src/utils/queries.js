@@ -7,6 +7,18 @@ export const QUERY_AUTHENTICATE = gql`
       firstName
       lastName
       email
+      orders {
+        _id
+        purchaseDate
+        products {
+          _id
+          name
+          description
+          price
+          quantity
+          imageUrl
+        }
+      }
     }
   }
 `;
