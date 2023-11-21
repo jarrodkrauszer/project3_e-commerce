@@ -128,7 +128,15 @@ const resolvers = {
     },
     addOrder: async (_, { products }, context) => {
       if (context.user) {
-        const order = new Order({ products });
+        const order = new Order({ products: products.map(p => p.id) });
+
+        for (let product of products) {
+          await Product.findOneAndUpdate({ _id: product.id }, {
+            $inc: {
+              quantity: -product.purchaseQuantity
+            }
+          })
+        }
 
         await User.findByIdAndUpdate(context.user._id, {
           $push: { orders: order },
@@ -147,15 +155,6 @@ const resolvers = {
       }
 
       throw AuthenticationError;
-    },
-    updateProduct: async (parent, { _id, quantity }) => {
-      const decrement = Math.abs(quantity) * -1;
-
-      return await Product.findByIdAndUpdate(
-        _id,
-        { $inc: { quantity: decrement } },
-        { new: true }
-      );
     },
     login: async (_, { email, password }, context) => {
       const user = await User.findOne({ email }).populate("orders");
