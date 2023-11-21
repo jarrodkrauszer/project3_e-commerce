@@ -4,7 +4,6 @@ const User = require("../models/User");
 async function createToken(user_id) {
   try {
     const token = await sign({ user_id }, process.env.JWT_SECRET);
-    console.log(token);
 
     return token;
   } catch (err) {
@@ -16,8 +15,6 @@ async function authenticate({ req, res }) {
   const token = req.cookies.token;
 
   if (!token) return { req, res }; // will be our context
-
-  // if (!token) return { res }
 
   try {
     const data = await verify(token, process.env.JWT_SECRET, {

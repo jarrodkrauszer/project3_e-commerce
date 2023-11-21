@@ -28,7 +28,6 @@ const resolvers = {
     },
     checkout: async (parent, args, context) => {
       const url = context.req.headers.origin;
-      // console.log(context.header);
 
       await Order.create({ products: args.products.map(({ _id }) => _id) });
       const line_items = [];

@@ -34,10 +34,6 @@ const Cart = () => {
     }
   }, [state.cart.length, dispatch]);
 
-  function addCartToStorage(cart) {
-    // Convert to JSON string and set to local storage
-  }
-
   function toggleCart() {
     dispatch({ type: TOGGLE_CART });
   }
