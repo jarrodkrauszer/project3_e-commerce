@@ -24,7 +24,7 @@
   top: 0.5rem;
   right: 0.5rem;
   cursor: pointer;
-  color: #B12704;
+  color: #b12704;
 }
 
 .cart .close:hover {
@@ -37,7 +37,7 @@
   right: 1%;
   font-size: 2rem;
   cursor: pointer;
-  background-color: #F3A847;
+  background-color: #434242;
   border-radius: 50%;
   padding: 0.25rem;
   width: 50px;
@@ -68,7 +68,7 @@ button {
   outline: none;
   cursor: pointer;
   margin: 0 0.5rem;
-  background-color: #F3A847;
+  background-color: #f3a847;
 }
 
 button:hover {

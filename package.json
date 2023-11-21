@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev:client": "cd ./client && npm run dev",
+    "seed:dev": "cd ./server && npm run seed:dev",
+    "seed:prod": "cd ./server && npm run seed:prod",
     "dev:server": "cd ./server && npm run start:dev",
     "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
     "build": "cd ./client && NODE_ENV=development npm install --only=dev && npm run build",

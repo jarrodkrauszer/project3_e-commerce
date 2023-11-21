@@ -37,13 +37,13 @@ const CartItem = ({ item }) => {
           {item.name}, ${item.price}
         </div>
         <div>
-          <span>Qty:</span>
+          <span>Qty: </span>
           <input
             type="number"
             placeholder="1"
             value={item.purchaseQuantity}
             onChange={onChange}
-            className="hover:cursor-pointer"
+            className="hover:cursor-pointer bg-gray-300 rounded-lg"
           />
           <span
             role="img"

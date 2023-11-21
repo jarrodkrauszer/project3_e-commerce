@@ -6,7 +6,6 @@ import React from 'react'
 import { useState } from 'react'
 
 import { useStoreContext } from '../utils/store'
-import Logo from "../assets/logo.png"
 
 const initialFormData = {
   firstName: '',
@@ -60,26 +59,18 @@ function Auth({ isLogin }) {
 
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-white">
-        <body class="h-full">
-        ```
-      */}
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm" >
           <img
             style={{ filter: 'invert(1)' }}
             className="mx-auto h-10 w-auto invert-colors"
-            src={Logo}
+            src={'/images/logo.png'}
             alt="Your Company"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             {isLogin ? 'Sign in to your account' : 'Register'}
           </h2>
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
+          {errorMessage && <p className="text-red-500 text-center mt-1">{errorMessage}</p>}
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -177,13 +168,6 @@ function Auth({ isLogin }) {
               </button>
             </div>
           </form>
-
-          <p className="mt-10 text-center text-sm text-gray-500">
-            Not a member?{' '}
-            <a href="#" className="font-semibold leading-6 text-black hover:text-gray-500">
-              Start a 14 day free trial
-            </a>
-          </p>
         </div>
       </div>
     </>

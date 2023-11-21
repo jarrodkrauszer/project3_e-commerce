@@ -14,12 +14,14 @@ function OrderHistory() {
     <>
       <div>
         {user ? (
+
           <div className="">
             <h2 className=" font-bold text-4xl text-center py-8">
               {user.firstName}'s Order History
             </h2>
             {user.orders.map((order) => (
               <div key={order._id} className="font-bold">
+
                 <h3>
                   {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}
                 </h3>

@@ -66,40 +66,44 @@ function Hero() {
         showThumbs={false}
         showStatus={false}
       >
-        <div>
-          <NavLink
-            to="/products"
-            onClick={() => handleClick(navigation[0]._id)}
-          >
+        <NavLink
+          to="/products"
+          onClick={() => handleClick(navigation[0]._id)}
+        >
+          <div>
             <img src={`/images/white-background.png`} style={imageSize} />
-          </NavLink>
-          <p className="legend" style={legendStyle}>
-            70% Sale on all Menswear
-          </p>
-        </div>
-        <div>
-          <NavLink
-            to="/products"
-            onClick={() => handleClick(navigation[4]._id)}
-          >
-            <img src={`/images/black-background.png`} style={imageSize} />
-          </NavLink>
-          <p className="legend" style={altLegendStyle}>
-            50% Sale on all Shoes
-          </p>
-        </div>
-        <div>
-          <NavLink
-            to="/products"
-            onClick={() => handleClick(navigation[2]._id)}
-            className="relative block h-full w-full rounded-lg overflow-hidden hover:opacity-75 transition-opacity duration-300"
-          >
-            <img src={`/images/white-background.png2`} style={imageSize} />
-          </NavLink>
-          <p className="legend" style={legendStyle}>
-            20% off all Hats
-          </p>
-        </div>
+            <p className="legend" style={legendStyle}>
+              70% Sale on all Menswear
+            </p>
+          </div>
+        </NavLink>
+        <NavLink
+          to="/products"
+          onClick={() => handleClick(navigation[4]._id)}
+        >
+          <div>
+
+            <img src={`/images/black-background.jpg`} style={imageSize} />
+
+            <p className="legend" style={altLegendStyle}>
+              50% Sale on all Shoes
+            </p>
+          </div>
+        </NavLink>
+        <NavLink
+          to="/products"
+          onClick={() => handleClick(navigation[2]._id)}
+          className="relative block h-full w-full rounded-lg overflow-hidden hover:opacity-75 transition-opacity duration-300"
+        >
+          <div>
+
+            <img src={`/images/white-background2.jpg`} style={imageSize} />
+
+            <p className="legend" style={legendStyle}>
+              20% off all Hats
+            </p>
+          </div>
+        </NavLink>
       </Carousel>
     </div>
   );
