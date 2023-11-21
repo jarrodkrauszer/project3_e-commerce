@@ -70,25 +70,37 @@ const Cart = () => {
     );
   }
 
+  const altLegendStyleTitle = {
+    color: "black",
+    fontSize: "22px",
+    fontFamily: "Raleway",
+    fontWeight: "bold",
+  };
+
   return (
     <div className="cart">
-      <div className="close" onClick={toggleCart}>
-        [close]
+      <div
+        className="close text-xl mr-2 px-2 rounded-full bg-black text-white font-bold"
+        onClick={toggleCart}
+      >
+        X
       </div>
-      <h2>Shopping Cart</h2>
+      <h2 style={altLegendStyleTitle}>Shopping Cart</h2>
       {state.cart.length ? (
         <div>
           {state.cart.map((item) => (
             <CartItem key={item._id} item={item} />
           ))}
 
-          <div className="flex-row space-between">
-            <strong>Total: ${calculateTotal()}</strong>
+          <div className="flex-row space-between ">
+            <strong className="font-bold">Total: ${calculateTotal()}</strong>
 
             {state.user ? (
-              <button onClick={submitCheckout}>Checkout</button>
+              <button className="ml-20" onClick={submitCheckout}>
+                Checkout
+              </button>
             ) : (
-              <span>(log in to check out)</span>
+              <span className="italiz"> (log in to check out)</span>
             )}
           </div>
         </div>
