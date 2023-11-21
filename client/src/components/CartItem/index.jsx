@@ -34,6 +34,11 @@ const CartItem = ({ item }) => {
     fontWeight: "bold",
   };
 
+  const inputStyle = {
+    ...altLegendStyle,
+    marginLeft: "30px",
+  };
+
   return (
     <div className="flex-row">
       <div>
@@ -47,7 +52,7 @@ const CartItem = ({ item }) => {
           <span style={altLegendStyle}>Qty: </span>
           <input
             type="number"
-            placeholder="1"
+            placeholder="-1"
             style={altLegendStyle}
             value={item.purchaseQuantity}
             onChange={onChange}
