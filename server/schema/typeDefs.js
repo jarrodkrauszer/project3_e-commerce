@@ -46,6 +46,11 @@ const typeDefs = gql`
     current: Boolean
   }
 
+  input PurchaseOrder {
+    id: ID
+    purchaseQuantity: Int
+  }
+
   input ProductInput {
     _id: ID
     purchaseQuantity: Int
@@ -71,7 +76,7 @@ const typeDefs = gql`
     createCategory(name: String!): Category!
     updateCategory(id: ID!, name: String!): Category!
     deleteCategory(id: ID!): Category!
-    addOrder(products: [ID]!): Order!
+    addOrder(products: [PurchaseOrder]!): Order!
     updateOrder(id: ID!, products: [ID!]!): Order!
     deleteOrder(id: ID!): Order!
     register(
