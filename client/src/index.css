@@ -14,19 +14,10 @@ body,
   justify-content: center;
   margin-top: 2rem;
 }
-
 .category-name-container .category-name {
   font-size: 3rem;
 }
 
 .welcome {
   color: #fff;
-}
-
-/*# sourceMappingURL=index.css.map */
-
-.error-message {
-  color: red;
-  margin: 1rem;
-  text-align: center;
-}
+}/*# sourceMappingURL=index.css.map */

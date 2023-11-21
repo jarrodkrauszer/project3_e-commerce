@@ -5,8 +5,9 @@
   "scripts": {
     "start": "node server.js",
     "watch": "nodemon",
-    "seed": "node config/seeds.js",
-    "start:dev": "nodemon server.js"
+    "seed:dev": "node config/seeds.js",
+    "start:dev": "nodemon server.js",
+    "seed:prod": "cd ./config && NODE_ENV=production node seed.js"
   },
   "keywords": [],
   "author": "",
