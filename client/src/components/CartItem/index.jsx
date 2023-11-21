@@ -27,20 +27,28 @@ const CartItem = ({ item }) => {
     }
   };
 
+  const altLegendStyle = {
+    color: "black",
+    fontSize: "16px",
+    fontFamily: "Raleway",
+    fontWeight: "bold",
+  };
+
   return (
     <div className="flex-row">
       <div>
         <img src={`/images/${item.image}`} alt="" />
       </div>
       <div>
-        <div>
+        <div style={altLegendStyle}>
           {item.name}, ${item.price}
         </div>
         <div>
-          <span>Qty: </span>
+          <span style={altLegendStyle}>Qty: </span>
           <input
             type="number"
             placeholder="1"
+            style={altLegendStyle}
             value={item.purchaseQuantity}
             onChange={onChange}
             className="hover:cursor-pointer bg-gray-300 rounded-lg"

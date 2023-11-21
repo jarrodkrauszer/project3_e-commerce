@@ -13,29 +13,38 @@ function OrderHistory() {
         {" "}
         {/* Remove the container class */}
         {user ? (
-          <div className="flex-col justify-center">
+          <div className="flex-column justify-center">
             {" "}
             {/* Add flex and justify-center classes */}
             <h2 className="text-center font-bold text-4xl py-8">
               {user.firstName}'s Order History
             </h2>
             {user.orders.map((order) => (
-              <div key={order._id} className="my-2 mx-10">
-                <h3>
+              <div
+                key={order._id}
+                className="my-2 mx-8 inline-block w-auto border border-black p-3"
+              >
+                <h3 className="text-center text-bold">
                   {new Date(parseInt(order.purchaseDate)).toLocaleDateString()}
                 </h3>
-                <div className="flex-row">
-                  {order.products.map(({ _id, imageUrl, name, price }, index) => (
-                    <div key={index} className="px-1 py-1">
-                      <Link to={`/products/${_id}`}>
-                        <img alt={name} src={imageUrl} />
-                        <p>{name}</p>
-                      </Link>
-                      <div>
-                        <span>${price}</span>
+                <div className="flex flex-wrap">
+                  {order.products.map(
+                    ({ _id, imageUrl, name, price }, index) => (
+                      <div key={index} className="flex-shrink-0  p-2">
+                        <Link to={`/products/${_id}`} className="block">
+                          <img
+                            alt={name}
+                            src={imageUrl}
+                            className="max-w-full h-auto"
+                          />
+                          <p className="text-center">{name}</p>
+                        </Link>
+                        <div className="text-center">
+                          <span>${price}</span>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    )
+                  )}
                 </div>
               </div>
             ))}

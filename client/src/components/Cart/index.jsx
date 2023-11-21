@@ -77,6 +77,12 @@ const Cart = () => {
     fontWeight: "bold",
   };
 
+  const altLegendStyleBody = {
+    color: "black",
+    fontSize: "16px",
+    fontFamily: "Raleway",
+  };
+
   return (
     <div className="cart">
       <div
@@ -93,7 +99,12 @@ const Cart = () => {
           ))}
 
           <div className="flex-row space-between ">
-            <strong className="font-bold">Total: ${calculateTotal()}</strong>
+            <strong
+              style={altLegendStyleBody}
+              className="font-extrabold italic"
+            >
+              Total: ${calculateTotal()}
+            </strong>
 
             {state.user ? (
               <button className="ml-20" onClick={submitCheckout}>
