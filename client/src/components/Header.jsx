@@ -117,13 +117,16 @@ function Header() {
                       Welcome, {state.user.firstName}
                     </p>
 
-                    <NavLink
-                      to="/order-history"
-                      className="hidden md:block text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                    >
-                      Order History
-                    </NavLink>
-
+                    {state.user.orders.length > 0 ? (
+                      <NavLink
+                        to="/order-history"
+                        className="hidden md:block text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                      >
+                        Order History
+                      </NavLink>
+                    ) : (
+                      ''
+                    )}
                     <NavLink
                       to="/logout"
                       onClick={logout}
