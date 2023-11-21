@@ -7,7 +7,7 @@
     "watch": "nodemon",
     "seed:dev": "node config/seeds.js",
     "start:dev": "nodemon server.js",
-    "seed:prod": "cd ./config && NODE_ENV=production node seed.js"
+    "seed:prod": "cd ./config && NODE_ENV=production node seedprod.js"
   },
   "keywords": [],
   "author": "",
