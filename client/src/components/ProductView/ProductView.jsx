@@ -67,7 +67,6 @@ function ProductView() {
 
   return (
     <div className="bg-white">
-      <h1>Details</h1>
       <div className="pt-6">
         <nav aria-label="Breadcrumb">
           <ol
