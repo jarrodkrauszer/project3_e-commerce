@@ -31,7 +31,6 @@ function Category() {
   const altLegendStyle = {
     color: "white",
     fontSize: "48px",
-    // background: "white",
     fontFamily: "Raleway",
     fontWeight: "bold",
   };
