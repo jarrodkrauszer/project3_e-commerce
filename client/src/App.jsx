@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 import Auth from "./pages/Auth";
 import Landing from "./pages/Landing";
 import Products from "./pages/Products";
-import ProductView from "./pages/ProductView";
+import ProductDetails from "./pages/ProductDetails";
 import OrderProcessed from "./pages/OrderProcessed";
 
 import { useStoreContext } from "./utils/store";
@@ -41,7 +41,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/products/:id" element={<ProductView />} />
+          <Route path="/products/:id" element={<ProductDetails />} />
 
           <Route path="/register" element={<Auth isLogin={false} />} />
           <Route path="/login" element={<Auth isLogin={true} />} />

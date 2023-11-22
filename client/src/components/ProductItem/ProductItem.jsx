@@ -11,8 +11,6 @@ function ProductItem(item) {
   const { imageUrl, name, _id, price, quantity } = item;
 
   const addToCart = () => {
-    console.log("Add to cart!");
-    console.log(state.cart);
     const itemInCart = state.cart.find((cartItem) => cartItem._id === _id);
     if (itemInCart) {
       dispatch({
