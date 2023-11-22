@@ -12,7 +12,7 @@ mongoose.connect(is_prod ? process.env.DB_URL : 'mongodb://127.0.0.1:27017/cloth
 
 const cleanDB = require('./cleanDB');
 
-db.once('open', async () => {
+mongoose.connection.once('open', async () => {
   await cleanDB('Category', 'categories');
   await cleanDB('Product', 'products');
   await cleanDB('User', 'users');
