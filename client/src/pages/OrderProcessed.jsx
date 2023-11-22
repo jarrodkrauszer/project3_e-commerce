@@ -25,7 +25,7 @@ function OrderProcessed() {
 
       setTimeout(() => {
         window.location.assign('/');
-      }, 3000);
+      }, 2000);
     }
 
     saveOrder();
