@@ -4,7 +4,6 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useMutation, useQuery } from "@apollo/client";
 import { NavLink, useNavigate, Link } from "react-router-dom";
-import Logo from "../assets/logo.png";
 import { useStoreContext } from "../utils/store";
 import {
   UPDATE_USER,
@@ -83,9 +82,9 @@ function Header() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <a href="/" className="flex items-center px-1">
-                    <img className="h-8 w-auto" src={Logo} alt="Your Company" />
-                  </a>
+                  <NavLink to="/" className="flex items-center px-1">
+                    <img className="h-8 w-auto" src={'/images/logo.png'} alt="Your Company" />
+                  </NavLink>
                 </div>
                 <div className="hidden sm:ml-6 sm:block justify-center">
                   <div className="flex justify-center items-center space-x-4 mx-auto">
