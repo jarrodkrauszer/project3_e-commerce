@@ -104,7 +104,7 @@ const Cart = () => {
 
             {state.user ? (
               <button
-                className="ml-20 text-white bg-black rounded-lg"
+                className="ml-20 text-white bg-black rounded-lg py-1 px-2"
                 onClick={submitCheckout}
               >
                 Checkout
