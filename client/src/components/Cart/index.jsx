@@ -103,7 +103,10 @@ const Cart = () => {
             </strong>
 
             {state.user ? (
-              <button className="ml-20" onClick={submitCheckout}>
+              <button
+                className="ml-20 text-white bg-black rounded-lg"
+                onClick={submitCheckout}
+              >
                 Checkout
               </button>
             ) : (
