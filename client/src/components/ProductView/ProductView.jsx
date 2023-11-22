@@ -115,7 +115,7 @@ function ProductView() {
                 {currentProduct.name}
               </h1>
               <p className="text-3xl tracking-tight text-gray-900">
-                {currentProduct.price}
+                ${currentProduct.price}
               </p>
               <h3>Quantity: {currentProduct.quantity}</h3>
               <button
