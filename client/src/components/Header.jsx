@@ -3,7 +3,7 @@ import { Fragment, useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useMutation, useQuery } from "@apollo/client";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, Link } from "react-router-dom";
 import Logo from "../assets/logo.png";
 import { useStoreContext } from "../utils/store";
 import {
@@ -125,7 +125,7 @@ function Header() {
                         Order History
                       </NavLink>
                     ) : (
-                      ''
+                      ""
                     )}
                     <NavLink
                       to="/logout"
@@ -158,9 +158,12 @@ function Header() {
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation.map((item) => (
-                <Disclosure.Button
+                <Link
                   key={item.name}
                   to="/products"
+                  onClick={() => {
+                    handleClick(item._id);
+                  }}
                   className={classNames(
                     item.current
                       ? "bg-gray-900 text-white"
@@ -170,7 +173,7 @@ function Header() {
                   aria-current={item.current ? "page" : undefined}
                 >
                   {item.name}
-                </Disclosure.Button>
+                </Link>
               ))}
 
               {state.user ? (
